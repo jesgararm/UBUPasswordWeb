@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 namespace Comun
 {
     public static class Utils
@@ -7,7 +8,7 @@ namespace Comun
         // retorna el string encriptado.
         public static string Encriptar(string password)
         {
-            byte[] encriptado = System.Text.Encoding.Unicode.GetBytes(password);
+            byte[] encriptado = Encoding.Unicode.GetBytes(password);
             return Convert.ToBase64String(encriptado);
         }
 
@@ -16,7 +17,7 @@ namespace Comun
         public static string Desencriptar(string passwordEncriptada)
         {
             byte[] desencriptar = Convert.FromBase64String(passwordEncriptada);
-            return System.Text.Encoding.Unicode.GetString(desencriptar);
+            return Encoding.Unicode.GetString(desencriptar);
         }
     }
 }

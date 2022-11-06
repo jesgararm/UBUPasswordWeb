@@ -14,7 +14,9 @@ namespace ClasesLib.Tests
         [TestMethod()]
         public void UsuarioTest()
         {
-            Assert.Fail();
+            // Comprobamos que crea un usuario
+            Usuario usuario = new Usuario("email@email.com", "nombre", "apellido", "password");
+            Assert.IsNotNull(usuario);
         }
     }
 }
