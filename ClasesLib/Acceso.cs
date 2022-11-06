@@ -41,6 +41,17 @@ namespace ClasesLib
             set { entradasLog = value; }
         }
 
+        // Añade una entrada al log de accesos
+        public void InsertarEntrada(EntradaLog entrada)
+        {
+            // Comprobamos que el usuario puede acceder y fecha consistente
+            if ((entrada.Entrada.Usuario == this.usuario||entrada.Entrada.ListaAccesoUsuarios.Contains(usuario.IdUsuario)) 
+                && entrada.Fecha >= this.fechaAcceso.Date)
+            {
+                this.entradasLog.Add(entrada);
+            }
+        }
+
         // Busca todos los logs que contengan la entrada pasada por parámetro.
         public List<EntradaLog> BuscarEntrada(Entrada entrada) {
             List<EntradaLog> listaEntradas = new List<EntradaLog>();

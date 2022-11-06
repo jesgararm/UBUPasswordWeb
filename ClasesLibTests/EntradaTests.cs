@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Comun.Utils;
 
 namespace ClasesLib.Tests
 {
@@ -14,19 +15,53 @@ namespace ClasesLib.Tests
         [TestMethod()]
         public void EntradaTest()
         {
-            Assert.Fail();
+            // Creamos usuario para pruebas
+            Usuario usuario = new Usuario("Usuario1@gmail.com", "Usuario1","Pérez", "1234");
+            // Comprobamos que se crea una entrada correctamente
+            Entrada entrada = new Entrada(usuario, "1234", "Entrada de prueba", new List<int>());
+            Assert.AreEqual(entrada.Usuario, usuario);
+            Assert.AreEqual(entrada.Password, Encriptar("1234"));
+            Assert.AreEqual(entrada.Descripcion, "Entrada de prueba");
+            Assert.AreEqual(entrada.ListaAccesoUsuarios.Count, 0);
+            Assert.IsNotNull(entrada);
+            Assert.AreEqual(entrada.IdEntrada, 0);
         }
 
         [TestMethod()]
         public void AgregarUsuarioTest()
         {
-            Assert.Fail();
+            // Creamos usuario para pruebas
+            Usuario usuario = new Usuario("Usuario1@gmail.com", "Usuario1", "Pérez", "1234");
+            // Creamos entrada para pruebas
+            Entrada entrada = new Entrada(usuario, "1234", "Entrada de prueba", new List<int>());
+
+            // Añadimos un usuario a la lista de acceso
+            entrada.AgregarUsuario(usuario);
+            // Comprobamos que se añade.
+            Assert.AreEqual(entrada.ListaAccesoUsuarios.Count, 1);
+            Assert.AreEqual(entrada.ListaAccesoUsuarios[0], usuario.IdUsuario);
+            
         }
 
         [TestMethod()]
         public void EliminarUsuarioTest()
         {
-            Assert.Fail();
+            // Creamos usuario para pruebas
+            Usuario usuario = new Usuario("Usuario1@gmail.com", "Usuario1", "Pérez", "1234");
+            // Creamos entrada para pruebas
+            Entrada entrada = new Entrada(usuario, "1234", "Entrada de prueba", new List<int>());
+
+            // Añadimos un usuario a la lista de acceso
+            entrada.AgregarUsuario(usuario);
+            // Comprobamos que se añade.
+            Assert.AreEqual(entrada.ListaAccesoUsuarios.Count, 1);
+            Assert.AreEqual(entrada.ListaAccesoUsuarios[0], usuario.IdUsuario);
+            // Lo eliminamos
+            entrada.EliminarUsuario(usuario);
+            // Comprobamos que se elimina
+            Assert.AreEqual(entrada.ListaAccesoUsuarios.Count, 0);
+            
+
         }
     }
 }

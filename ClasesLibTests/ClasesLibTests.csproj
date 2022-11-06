@@ -70,6 +70,10 @@
       <Project>{8D1388E2-ADB2-43B1-8F80-61B4A36A9FA1}</Project>
       <Name>ClasesLib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Comun\Comun.csproj">
+      <Project>{f415b28f-903c-48be-87e3-1fdcb9925a8e}</Project>
+      <Name>Comun</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
