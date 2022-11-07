@@ -41,7 +41,10 @@
             width: 426px;
             height: 23px;
             text-align: right;
-            color: #009933;
+            color: #FF3300;
+        }
+        .auto-style10 {
+            color: #00CC00;
         }
     </style>
 </head>
@@ -80,7 +83,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style9">Permitir Acceso:</td>
-                    <td class="auto-style7">&nbsp;</td>
+                    <td class="auto-style7"></td>
                     <td class="auto-style3"></td>
                 </tr>
                 <tr>
@@ -90,12 +93,16 @@
                 </tr>
                 <tr>
                     <td class="auto-style1">&nbsp;</td>
-                    <td class="auto-style6">&nbsp;</td>
+                    <td class="auto-style4">
+                        <asp:Label ID="lblOK" runat="server" CssClass="auto-style10" Text="Entrada creada con éxito."></asp:Label>
+                    </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style1">&nbsp;</td>
-                    <td class="auto-style6">&nbsp;</td>
+                    <td class="auto-style4">
+                        <asp:Button ID="btnCrearEntrada" runat="server" OnClick="btnCrearEntrada_Click" Text="Crear" />
+                    </td>
                     <td>&nbsp;</td>
                 </tr>
             </table>
