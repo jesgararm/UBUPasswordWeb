@@ -25,15 +25,20 @@ namespace Datos.Tests
         [TestMethod()]
         public void InsertarUsuarioTest()
         {
-            // Probamos que inserta satisfactoriamente un nuevo usuario
             BaseDatos db = new BaseDatos();
+
+            #region Caso 1
+            // Probamos que inserta satisfactoriamente un nuevo usuario
             Usuario usuario = new Usuario("juan@gmail.com", "Juan", "Bellido", "abcd1234");
             Assert.IsTrue(db.InsertarUsuario(usuario));
+            #endregion
 
+            #region Caso 2
             // Probamos que no inserta un usuario que ya existe
             Assert.IsFalse(db.InsertarUsuario(usuario));
             usuario = new Usuario("admin@gmail.com", "admin", "pérez", "123456", true);
             Assert.IsFalse(db.InsertarUsuario(usuario));
+            #endregion
         }
 
         [TestMethod()]
@@ -52,10 +57,8 @@ namespace Datos.Tests
             #region Caso 2
             // Usuario no existente en la BBDD o tiene idUsuario = 0
             Usuario usuario2 = new Usuario("juan@gmail.com", "Juan", "Bellido", "abcd1234");
-            db.InsertarUsuario(usuario2);
-            Usuario usuarioE = db.ObtenerUsuario("juan@gmail.com");
             // Probamos que no elimina nada si no existe
-            Assert.IsFalse(db.EliminaUsuario(usuarioE));
+            Assert.IsFalse(db.EliminaUsuario(usuario2));
             // Probamos el número de usuarios inicializados en la BBDD no ha cambiado
             Assert.AreEqual(51, db.NumeroUsuarios());
             #endregion
@@ -124,29 +127,54 @@ namespace Datos.Tests
             //comprobamos que se han modificado los campos
             Usuario usuarioRecuperado = db.ObtenerUsuario(usuario3.Email);
             Assert.AreEqual(usuarioRecuperado.Nombre, "nombreTest");
-            Assert.AreEqual(usuarioRecuperado.Nombre, "apellidoTest");
+            Assert.AreEqual(usuarioRecuperado.Apellido, "apellidoTest");
             #endregion
         }
 
         [TestMethod()]
         public void ObtenerUsuarioTest()
         {
+            BaseDatos db = new BaseDatos();
+
             #region Caso 1
-            // Usuario es null
-            Usuario usuario = null;
-            //Assert.IsFalse(db.ModificarDatosUsuario(usuario));
+            // Email de usuario que no existe
+            Assert.IsNull(db.ObtenerUsuario("prueba@gmail.com"));
+            #endregion
+
+            #region Caso 2
+            // Email de usuario que existe en la BBDD
+            Usuario usuarioRecuperado = db.ObtenerUsuario("agu_gra@gmail.com");
+            Assert.IsNotNull(usuarioRecuperado);
+            Assert.AreEqual(usuarioRecuperado.Email,"agu_gra@gmail.com");
             #endregion
         }
+
         [TestMethod()]
         public void ObtenerListaEmailUsuariosTest()
         {
-            Assert.Fail();
+            BaseDatos db = new BaseDatos();
+
+            Assert.AreEqual(db.ObtenerListaEmailUsuarios().Count, db.NumeroUsuarios());
         }
         
         [TestMethod()]
         public void ObtenerEntradaTest()
         {
-            Assert.Fail();
+            BaseDatos db = new BaseDatos();
+
+            #region Caso 1
+            // id inexistente
+            Assert.IsNull(db.ObtenerEntrada(1));
+            #endregion
+
+            #region Caso 2
+            Usuario usuario1 = db.ObtenerUsuario("cay_arr@gmail.com");
+            // Creamos una entrada con este usuario
+            Entrada entrada = new Entrada(usuario1, "123456", "test", new List<int>());
+            db.InsertaEntrada(entrada);
+
+            Assert.IsNotNull(db.ObtenerEntrada(1));
+            #endregion
         }
 
         [TestMethod()]
@@ -163,31 +191,118 @@ namespace Datos.Tests
         [TestMethod()]
         public void InsertaEntradaTest()
         {
-            Assert.Fail();
+            BaseDatos db = new BaseDatos();
+
+            #region Caso 1
+            int numeroEntradas = db.NumeroEntradas();
+            // Probamos que inserta satisfactoriamente
+            Usuario usuario1 = db.ObtenerUsuario("cay_arr@gmail.com");
+            // Creamos una entrada con este usuario
+            Entrada entrada = new Entrada(usuario1, "123456", "test", new List<int>());
+            Assert.IsTrue(db.InsertaEntrada(entrada));
+            Assert.AreEqual(++numeroEntradas, db.NumeroEntradas());
+            #endregion
+
+            #region Caso 2
+            // Probamos que no inserta una entrada que ya existe
+            Entrada entrada1 = db.ObtenerEntrada(numeroEntradas);
+            Assert.IsFalse(db.InsertaEntrada(entrada1));
+            Assert.AreEqual(numeroEntradas, db.NumeroEntradas());
+            #endregion
         }
 
         [TestMethod()]
         public void EliminaEntradaTest()
         {
-            Assert.Fail();
+            BaseDatos db = new BaseDatos();
+
+            #region Caso 1
+            int numeroEntradas = db.NumeroEntradas();
+            // Probamos que inserta satisfactoriamente
+            Usuario usuario1 = db.ObtenerUsuario("cay_arr@gmail.com");
+            // Creamos una entrada con este usuario
+            Entrada entrada = new Entrada(usuario1, "123456", "test", new List<int>());
+            Assert.IsTrue(db.InsertaEntrada(entrada));
+            Assert.AreEqual(++numeroEntradas, db.NumeroEntradas());
+            Entrada entrada1 = db.ObtenerEntrada(numeroEntradas);
+            Assert.IsTrue(db.EliminaEntrada(entrada1));
+            Assert.AreEqual(--numeroEntradas, db.NumeroEntradas());
+            #endregion
+
+            #region Caso 2
+            //comprobamos que no elimina nada si la entrada no existe
+            Entrada entrada2 = new Entrada(usuario1, "123456", "test", new List<int>());
+            entrada.IdEntrada = 99999;
+            Assert.IsFalse(db.EliminaEntrada(entrada2));
+            Assert.AreEqual(numeroEntradas, db.NumeroEntradas());
+            #endregion
         }
 
         [TestMethod()]
         public void InsertaAccesoTest()
         {
-            Assert.Fail();
+            BaseDatos db = new BaseDatos();
+
+            #region Caso 1
+            int numeroAccesos = db.NumeroAccesos();
+            // Probamos que inserta satisfactoriamente
+            Usuario usuario1 = db.ObtenerUsuario("cay_arr@gmail.com");
+            // Creamos un acceso con este usuario
+            Acceso acceso = new Acceso(usuario1);
+            Assert.IsTrue(db.InsertaAcceso(acceso));
+            Assert.AreEqual(++numeroAccesos, db.NumeroAccesos());
+            #endregion
+
+            #region Caso 2
+            // Probamos que no inserta una entrada que ya existe
+            Acceso acceso1 = db.ObtenerAcceso(numeroAccesos);
+            Assert.IsFalse(db.InsertaAcceso(acceso1));
+            Assert.AreEqual(numeroAccesos, db.NumeroAccesos());
+            #endregion
         }
 
         [TestMethod()]
         public void ObtenerAccesoTest()
         {
-            Assert.Fail();
+            BaseDatos db = new BaseDatos();
+
+            #region Caso 1
+            // id inexistente
+            Assert.IsNull(db.ObtenerAcceso(1));
+            #endregion
+
+            #region Caso 2
+            Usuario usuario1 = db.ObtenerUsuario("cay_arr@gmail.com");
+            // Creamos un acceso con este usuario
+            Acceso acceso = new Acceso(usuario1);
+            db.InsertaAcceso(acceso);
+
+            Assert.IsNotNull(db.ObtenerAcceso(1));
+            #endregion
         }
 
         [TestMethod()]
         public void NumeroUsuariosTest()
         {
-            Assert.Fail();
+            BaseDatos db = new BaseDatos();
+
+            Assert.AreEqual(51, db.NumeroUsuarios());
+        }
+
+        [TestMethod()]
+        public void NumeroEntradasTest()
+        {
+            BaseDatos db = new BaseDatos();
+
+            Assert.AreEqual(0, db.NumeroEntradas());
+        }
+
+        [TestMethod()]
+        public void NumeroAccesosTest()
+        {
+            BaseDatos db = new BaseDatos();
+
+            Assert.AreEqual(0, db.NumeroAccesos());
         }
     }
 }
