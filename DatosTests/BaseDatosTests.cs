@@ -52,8 +52,10 @@ namespace Datos.Tests
             #region Caso 2
             // Usuario no existente en la BBDD o tiene idUsuario = 0
             Usuario usuario2 = new Usuario("juan@gmail.com", "Juan", "Bellido", "abcd1234");
+            db.InsertarUsuario(usuario2);
+            Usuario usuarioE = db.ObtenerUsuario("juan@gmail.com");
             // Probamos que no elimina nada si no existe
-            Assert.IsFalse(db.EliminaUsuario(usuario2));
+            Assert.IsFalse(db.EliminaUsuario(usuarioE));
             // Probamos el número de usuarios inicializados en la BBDD no ha cambiado
             Assert.AreEqual(51, db.NumeroUsuarios());
             #endregion
@@ -96,19 +98,64 @@ namespace Datos.Tests
         }
 
         [TestMethod()]
-        public void ModificarUsuarioTest()
+        public void ModificarDatosUsuarioTest()
         {
-            Assert.Fail();
+            BaseDatos db = new BaseDatos();
+
+            #region Caso 1
+            // Usuario es null
+            Usuario usuario = null;
+            Assert.IsFalse(db.ModificarDatosUsuario(usuario));
+            #endregion
+
+            #region Caso 2
+            // Usuario no existente en la BBDD o tiene idUsuario = 0
+            Usuario usuario2 = new Usuario("juan@gmail.com", "Juan", "Bellido", "abcd1234");
+            // Probamos que no elimina nada si no existe
+            Assert.IsFalse(db.ModificarDatosUsuario(usuario2));
+            #endregion
+
+            #region Caso 3
+            // Modificamos un usuario que existe
+            Usuario usuario3 = db.ObtenerUsuario("agu_gra@gmail.com");
+            usuario3.Nombre = "nombreTest";
+            usuario3.Apellido = "apellidoTest"; 
+            Assert.IsTrue(db.ModificarDatosUsuario(usuario3));
+            //comprobamos que se han modificado los campos
+            Usuario usuarioRecuperado = db.ObtenerUsuario(usuario3.Email);
+            Assert.AreEqual(usuarioRecuperado.Nombre, "nombreTest");
+            Assert.AreEqual(usuarioRecuperado.Nombre, "apellidoTest");
+            #endregion
         }
 
         [TestMethod()]
         public void ObtenerUsuarioTest()
         {
+            #region Caso 1
+            // Usuario es null
+            Usuario usuario = null;
+            //Assert.IsFalse(db.ModificarDatosUsuario(usuario));
+            #endregion
+        }
+        [TestMethod()]
+        public void ObtenerListaEmailUsuariosTest()
+        {
+            Assert.Fail();
+        }
+        
+        [TestMethod()]
+        public void ObtenerEntradaTest()
+        {
             Assert.Fail();
         }
 
         [TestMethod()]
-        public void ObtenerEntradaTest()
+        public void ObtenerIdEntradasPropiedadUsuario()
+        {
+            Assert.Fail();
+        }
+        [TestMethod()]
+        public void ObtenerIdEntradasAccesoUsuario()
         {
             Assert.Fail();
         }

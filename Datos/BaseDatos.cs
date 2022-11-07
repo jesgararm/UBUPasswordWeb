@@ -86,12 +86,20 @@ namespace Datos
 			return false;
 		}
 
-		public bool ModificarUsuario(Usuario usuario)
+		public bool ModificarDatosUsuario(Usuario usuario)
 		{
-			if (!dicUsuario.ContainsKey(usuario.IdUsuario))
+			if (usuario == null || !dicUsuario.ContainsKey(usuario.IdUsuario))
 				return false;
 
-			dicUsuario[usuario.IdUsuario] = usuario;
+			Usuario usuarioRecuperado = ObtenerUsuario(usuario.Email);
+
+			if (usuarioRecuperado.IdUsuario != 0 && usuarioRecuperado.IdUsuario != usuario.IdUsuario)
+				return false;
+
+			usuarioRecuperado.Nombre = usuario.Nombre;
+			usuarioRecuperado.Apellido = usuario.Apellido;
+
+            dicUsuario[usuarioRecuperado.IdUsuario] = usuarioRecuperado;
 
 			return true;
 		}
@@ -136,6 +144,18 @@ namespace Datos
             foreach (Entrada e in entradas)
             {
                 devolver.Add(e.IdEntrada);
+            }
+
+            return devolver;
+        }
+
+        public List<string> ObtenerListaEmailUsuarios()
+        {
+			List<string> devolver = new List<string>();
+
+            foreach (Usuario u in dicUsuario.Values)
+            {
+                devolver.Add(u.Email);
             }
 
             return devolver;
