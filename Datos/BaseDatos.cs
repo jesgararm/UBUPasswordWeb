@@ -32,7 +32,7 @@ namespace Datos
 
 			Usuario admin = new Usuario("admin@gmail.com", "admin", "admin", "admin",true);
 			InsertarUsuario(admin);
-			string ubicacion = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\Datos\\Usuarios.csv");
+			string ubicacion = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\Datos\\Usuarios.csv");
             System.IO.StreamReader archivo = new System.IO.StreamReader(ubicacion);
 			char separador = ';';
 			string linea;
@@ -116,7 +116,7 @@ namespace Datos
 
         public Entrada ObtenerEntrada(int idEntrada)
         {
-			Entrada devolver = null;
+			Entrada devolver;
 
 			dicEntradas.TryGetValue(idEntrada,out devolver);
 
@@ -195,7 +195,7 @@ namespace Datos
 
 		public Acceso ObtenerAcceso(int idAcceso)
 		{
-            Acceso devolver = null;
+            Acceso devolver;
             dicLog.TryGetValue(idAcceso, out devolver);
 
             return devolver;
@@ -205,6 +205,15 @@ namespace Datos
 		{
             return dicUsuario.Count;
         }
-	}
+
+        public int NumeroEntradas()
+        {
+            return dicEntradas.Count;
+        }
+        public int NumeroAccesos()
+        {
+            return dicLog.Count;
+        }
+    }
 }
 

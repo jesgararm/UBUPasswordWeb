@@ -16,7 +16,7 @@ namespace Datos
 
         // Método que modifica el objeto Usuario si ya existe
         // Retorna: true si se ha realizado correctamente a accion.
-        bool ModificarUsuario(Usuario usuario);
+        bool ModificarDatosUsuario(Usuario usuario);
 
         // Método que elimina el objeto Usuario
         // Retorna: true si se ha realizado correctamente a accion.
@@ -24,6 +24,9 @@ namespace Datos
         // Método que retorna el objeto Usuario a partir del email pasado
         // Retorna: Objeto Usuario o null
         Usuario ObtenerUsuario(string email);
+        List<int> ObtenerIdEntradasPropiedadUsuario(Usuario usuario);
+        List<int> ObtenerIdEntradasAccesoUsuario(Usuario usuario);
+        List<string> ObtenerListaEmailUsuarios();
 
         // Método que retorna el número de usuarios
         // Retorna: Número de usuarios
@@ -40,6 +43,7 @@ namespace Datos
         // Método que obtiene el objeto Entrada a partir del id pasado
         // Retorna: Objeto Entrada
         Entrada ObtenerEntrada(int idEntrada);
+        int NumeroEntradas();
         #endregion
 
         #region Gestion de Accesos
@@ -49,6 +53,7 @@ namespace Datos
         // Método que obtiene el objeto Acceso a partir del id pasado
         // Retorna: Objeto Acceso
         Acceso ObtenerAcceso(int idAcceso);
+        int NumeroAccesos();
         #endregion
     }
 }
