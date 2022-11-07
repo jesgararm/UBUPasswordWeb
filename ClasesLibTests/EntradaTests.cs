@@ -60,8 +60,6 @@ namespace ClasesLib.Tests
             entrada.EliminarUsuario(usuario);
             // Comprobamos que se elimina
             Assert.AreEqual(entrada.ListaAccesoUsuarios.Count, 0);
-            
-
         }
     }
 }

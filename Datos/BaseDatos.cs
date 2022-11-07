@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using ClasesLib;
 /// <summary>
 /// Summary description for Class1
@@ -67,8 +68,9 @@ namespace Datos
 			// Eliminamos si existe
             if (dicUsuario.Remove(usuario.IdUsuario))
 			{
+				var lista = this.dicEntradas.Values.ToList();
                 // Eliminamos el usuario de las entradas
-                foreach (Entrada e in dicEntradas.Values)
+                foreach (Entrada e in lista)
 				{
 					if (e.Usuario.IdUsuario == usuario.IdUsuario)
 					{
@@ -107,9 +109,36 @@ namespace Datos
         public Entrada ObtenerEntrada(int idEntrada)
         {
 			Entrada devolver = null;
+
 			dicEntradas.TryGetValue(idEntrada,out devolver);
 
 			return devolver;
+        }
+
+        public List<int> ObtenerIdEntradasPropiedadUsuario(Usuario usuario)
+        {
+            List<int> devolver = new List<int>();
+            var entradas = this.dicEntradas.Values.Where(e => e.Usuario.IdUsuario == usuario.IdUsuario);
+
+			foreach (Entrada e in entradas) 
+			{
+                devolver.Add(e.IdEntrada);
+            }
+			
+            return devolver;
+        }
+
+        public List<int> ObtenerIdEntradasAccesoUsuario(Usuario usuario)
+        {
+            List<int> devolver = new List<int>();
+            var entradas = this.dicEntradas.Values.Where(e => e.ExisteUsuario(usuario) == true);
+
+            foreach (Entrada e in entradas)
+            {
+                devolver.Add(e.IdEntrada);
+            }
+
+            return devolver;
         }
 
         public bool InsertaEntrada(Entrada entrada)

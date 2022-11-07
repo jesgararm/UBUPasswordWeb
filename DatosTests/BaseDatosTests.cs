@@ -68,27 +68,30 @@ namespace Datos.Tests
             #endregion
 
             #region Caso 4
-            // Eliminamos un usuario que existe y no tiene estradas propias
-            // ni tiene acceso a ninguna entrada
+            // Eliminamos un usuario que existe, tiene estradas propias
+            // y tiene acceso a una entrada
             Usuario usuario4 = db.ObtenerUsuario("cay_arr@gmail.com");
-
+            // Creamos una entrada con este usuario
             Entrada entrada = new Entrada(usuario4, "123456", "test", new List<int>());
-
+            db.InsertaEntrada(entrada);
+            //obtenemos otro usuario
             Usuario usuario5 = db.ObtenerUsuario("glo_san@gmail.com");
-
+            //añadimos el id del primero a la lista que pasaremos a la nueva
+            //entrada del segundo usuario
             List<int> listaUsuarios = new List<int>();
             listaUsuarios.Add(usuario4.IdUsuario);
-
             Entrada entrada1 = new Entrada(usuario5, "123456", "test", listaUsuarios);
+            db.InsertaEntrada(entrada1);
 
             Assert.IsTrue(db.EliminaUsuario(usuario4));
             // Probamos el número de usuarios inicializados en la BBDD si ha cambiado
             Assert.AreEqual(49, db.NumeroUsuarios());
             // comprobamos que se elimina la entrada perteneciante al usuario4
-            Assert.IsNull(db.ObtenerEntrada(entrada.IdEntrada));
+            Assert.AreEqual(db.ObtenerIdEntradasPropiedadUsuario(usuario4).Count,0);
+
             // comprobamos que se elimina al usuario4 de las listas de usuarios permitidos de las entradas 
             // a las que tiene acceso
-
+            Assert.AreEqual(db.ObtenerIdEntradasAccesoUsuario(usuario4).Count, 0);
             #endregion
         }
 

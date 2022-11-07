@@ -59,7 +59,10 @@ namespace ClasesLib
         {
             listaAccesoUsuarios.Remove(usuario.IdUsuario);
         }
-        
+        public bool ExisteUsuario(Usuario usuario)
+        {
+            return listaAccesoUsuarios.Contains(usuario.IdUsuario);
+        }
     }
 
 }
