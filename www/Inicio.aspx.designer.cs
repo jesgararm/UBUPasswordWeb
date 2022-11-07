@@ -11,7 +11,7 @@ namespace www
 {
 
 
-    public partial class InicioSesion
+    public partial class Inicio
     {
 
         /// <summary>
@@ -24,48 +24,66 @@ namespace www
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control lblLogin.
+        /// Control btnExit.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblLogin;
+        protected global::System.Web.UI.WebControls.Button btnExit;
 
         /// <summary>
-        /// Control txtNombreUs.
+        /// Control lblEmail.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNombreUs;
+        protected global::System.Web.UI.WebControls.Label lblEmail;
 
         /// <summary>
-        /// Control txtPass.
+        /// Control btnAddEnt.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPass;
+        protected global::System.Web.UI.WebControls.Button btnAddEnt;
 
         /// <summary>
-        /// Control btnEntrar.
+        /// Control lblNom.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEntrar;
+        protected global::System.Web.UI.WebControls.Label lblNom;
 
         /// <summary>
-        /// Control lblErrorInicioSesion.
+        /// Control lblAp.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblErrorInicioSesion;
+        protected global::System.Web.UI.WebControls.Label lblAp;
+
+        /// <summary>
+        /// Control lblPriv.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPriv;
+
+        /// <summary>
+        /// Control lblFechaAcceso.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFechaAcceso;
     }
 }

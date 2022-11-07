@@ -67,10 +67,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CrearEntrada.aspx" />
+    <Content Include="Inicio.aspx" />
     <Content Include="InicioSesion.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CrearEntrada.aspx.cs">
+      <DependentUpon>CrearEntrada.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CrearEntrada.aspx.designer.cs">
+      <DependentUpon>CrearEntrada.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Inicio.aspx.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inicio.aspx.designer.cs">
+      <DependentUpon>Inicio.aspx</DependentUpon>
+    </Compile>
     <Compile Include="InicioSesion.aspx.cs">
       <DependentUpon>InicioSesion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -88,6 +104,20 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClasesLib\ClasesLib.csproj">
+      <Project>{8D1388E2-ADB2-43B1-8F80-61B4A36A9FA1}</Project>
+      <Name>ClasesLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Comun\Comun.csproj">
+      <Project>{f415b28f-903c-48be-87e3-1fdcb9925a8e}</Project>
+      <Name>Comun</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Datos\Datos.csproj">
+      <Project>{0CF4DCB7-77AE-4638-B7B1-31E0A5443AD3}</Project>
+      <Name>Datos</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
