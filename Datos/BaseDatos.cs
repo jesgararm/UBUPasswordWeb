@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using ClasesLib;
 /// <summary>
@@ -32,7 +33,7 @@ namespace Datos
 
 			Usuario admin = new Usuario("admin@gmail.com", "admin", "admin", "admin",true);
 			InsertarUsuario(admin);
-			string ubicacion = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\Datos\\Usuarios.csv");
+			string ubicacion = System.IO.Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName, "..\\Datos\\Usuarios.csv");
             System.IO.StreamReader archivo = new System.IO.StreamReader(ubicacion);
 			char separador = ';';
 			string linea;
