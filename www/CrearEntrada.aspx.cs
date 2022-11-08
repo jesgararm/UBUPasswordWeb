@@ -14,10 +14,11 @@ namespace www
         Entrada ent;
         Usuario us;
         BaseDatos bd;
+        List<ListItem> listado;
+        List<ListItem> listadoSel;
         protected void Page_Load(object sender, EventArgs e)
         {
             lblOK.Visible = false;
-        
             bd = (BaseDatos)Application["db"];
             us = (Usuario)Session["user"];
 
@@ -25,7 +26,27 @@ namespace www
             {
                 Response.Redirect("InicioSesion.aspx");
             }
-        }
+            listado = (List<ListItem>)Session["listado"];
+            listadoSel = (List<ListItem>)Session["listadoSel"];
+
+            if (listado == null)
+            {
+                listado = new List<ListItem>();
+                listadoSel = new List<ListItem>();
+
+                foreach (string s in bd.ObtenerListaEmailUsuarios())
+                {
+                    listado.Add(new ListItem(s));
+                }
+                Session["listado"] = listado;
+                Session["listadoSel"] = listadoSel;
+            }
+
+            llEmail.DataSource = listado;
+            llEmail.DataBind();
+            llEmailSel.DataSource = listadoSel;
+            llEmailSel.DataBind();
+            }
 
         protected void btnCrearEntrada_Click(object sender, EventArgs e)
         {
@@ -49,7 +70,19 @@ namespace www
 
         protected void btnSalir_Click(object sender, EventArgs e)
         {
+            Session["listado"] = null;
+            Session["listadoSel"] = null;
             Response.Redirect("Inicio.aspx");
+        }
+
+        protected void btnAddEnt_Click(object sender, EventArgs e)
+        {
+            ListItem sel = llEmail.SelectedItem;
+            listado.Remove(sel);
+            listadoSel.Add(sel);
+            Session["listado"] = listado;
+            Session["listadoSel"] = listadoSel;
+
         }
     }
 }

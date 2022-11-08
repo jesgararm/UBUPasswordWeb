@@ -55,6 +55,19 @@
         .auto-style13 {
             width: 94%;
         }
+        .auto-style14 {
+            width: 247px;
+            height: 23px;
+        }
+        .auto-style15 {
+            width: 217px;
+            height: 23px;
+        }
+        .auto-style16 {
+            height: 23px;
+            width: 464px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -63,55 +76,62 @@
             <table class="auto-style13">
                 <tr>
                     <td class="auto-style1">&nbsp;</td>
-                    <td class="auto-style4"><strong><span class="auto-style5">Crear Nueva Entrada</span></strong></td>
+                    <td class="auto-style4" colspan="2"><strong><span class="auto-style5">Crear Nueva Entrada</span></strong></td>
                     <td class="auto-style11">
                         <asp:Button ID="btnSalir" runat="server" CssClass="auto-style12" OnClick="btnSalir_Click" Text="Salir" Width="107px" />
                     </td>
                 </tr>
                 <tr>
                     <td class="auto-style1">&nbsp;</td>
-                    <td class="auto-style6">&nbsp;</td>
+                    <td class="auto-style6" colspan="2">&nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style8">Descripción:</td>
-                    <td class="auto-style7">
+                    <td class="auto-style7" colspan="2">
                         <asp:TextBox ID="txtDesc" runat="server" Width="458px"></asp:TextBox>
                     </td>
                     <td class="auto-style3"></td>
                 </tr>
                 <tr>
                     <td class="auto-style8">Password:</td>
-                    <td class="auto-style7">
+                    <td class="auto-style7" colspan="2">
                         <asp:TextBox ID="txtPassword" runat="server" Width="458px"></asp:TextBox>
                     </td>
                     <td class="auto-style3"></td>
                 </tr>
                 <tr>
                     <td class="auto-style1">&nbsp;</td>
-                    <td class="auto-style6">&nbsp;</td>
+                    <td class="auto-style6" colspan="2">&nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style9">Permitir Acceso:</td>
-                    <td class="auto-style7">&nbsp;</td>
+                    <td class="auto-style14">
+                        <asp:ListBox ID="llEmail" runat="server" Width="242px"></asp:ListBox>
+                    </td>
+                    <td class="auto-style15">
+                        <asp:ListBox ID="llEmailSel" runat="server" Width="217px"></asp:ListBox>
+                    </td>
                     <td class="auto-style3"></td>
                 </tr>
                 <tr>
                     <td class="auto-style2"></td>
-                    <td class="auto-style7"></td>
+                    <td class="auto-style16" colspan="2">
+                        <asp:Button ID="btnAddEnt" runat="server" OnClick="btnAddEnt_Click" Text="+" Width="32px" />
+                    </td>
                     <td class="auto-style3"></td>
                 </tr>
                 <tr>
                     <td class="auto-style1">&nbsp;</td>
-                    <td class="auto-style4">
+                    <td class="auto-style4" colspan="2">
                         <asp:Label ID="lblOK" runat="server" CssClass="auto-style10" Text="Entrada creada con éxito."></asp:Label>
                     </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td class="auto-style1">&nbsp;</td>
-                    <td class="auto-style4">
+                    <td class="auto-style4" colspan="2">
                         <asp:Button ID="btnCrearEntrada" runat="server" OnClick="btnCrearEntrada_Click" Text="Crear" />
                     </td>
                     <td>&nbsp;</td>
