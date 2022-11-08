@@ -1,5 +1,6 @@
 ﻿using ClasesLib;
 using Datos;
+using static Comun.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,11 +19,9 @@ namespace www
         List<ListItem> listado;
         List<ListItem> listadoSel;
         String texto;
-        Regex reg;
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            reg = new Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$");
             bd = (BaseDatos)Application["db"];
             us = (Usuario)Session["user"];
             texto = (String)Session["label"];
@@ -61,7 +60,7 @@ namespace www
 
         protected void btnCrearEntrada_Click(object sender, EventArgs e)
         {
-            if (reg.IsMatch(txtPassword.Text))
+            if (ValidarPassword(txtPassword.Text))
             {
                 List<int> listado = new List<int>();
 
