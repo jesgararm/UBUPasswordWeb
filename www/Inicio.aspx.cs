@@ -16,6 +16,16 @@ namespace www
         {
             acceso = (Acceso)Session["acceso"];
             us = (Usuario)Session["user"];
+
+            if (acceso == null || us == null)
+            {
+                Response.Redirect("InicioSesion.aspx");
+            }
+            else
+            {
+                lblBienvenida.Text = "Bienvenido " + us.Nombre;
+            }
+
             lblEmail.Text = us.Email;
             lblNom.Text = us.Nombre;
             lblAp.Text = us.Apellido;

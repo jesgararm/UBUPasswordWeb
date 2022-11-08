@@ -80,6 +80,15 @@
                 <tr>
                     <td class="auto-style2">&nbsp;</td>
                     <td class="auto-style5">&nbsp;</td>
+                    <td class="auto-style9" colspan="2"><strong>
+                        <asp:Label ID="lblBienvenida" runat="server"></asp:Label>
+                        </strong></td>
+                    <td class="auto-style13">
+                        &nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style2">&nbsp;</td>
+                    <td class="auto-style5">&nbsp;</td>
                     <td class="auto-style10" colspan="2">&nbsp;</td>
                     <td>&nbsp;</td>
                 </tr>
