@@ -55,5 +55,11 @@ namespace ClasesLib
             get { return gestor; }
             set { gestor = value; }
         }
+
+        // Valida contraseña de usuario
+        public bool ValidaPassword(string password)
+        {
+            return this.password == Encriptar(password);
+        }
     }
 }

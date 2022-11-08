@@ -17,28 +17,39 @@ namespace www
         protected void Page_Load(object sender, EventArgs e)
         {
             lblOK.Visible = false;
-            
-            if (!IsPostBack)
-            {
-                bd = (BaseDatos)Application["db"];
-                us = (Usuario)Session["user"];
-            }
-            
-            if (txtDesc.Text.Length<1 && txtPassword.Text.Length < 5)
-            {
-                btnCrearEntrada.Enabled = false;
-            }
+        
+            bd = (BaseDatos)Application["db"];
+            us = (Usuario)Session["user"];
 
-            btnCrearEntrada.Enabled = true;
+            if (bd == null || us == null)
+            {
+                Response.Redirect("InicioSesion.aspx");
+            }
         }
 
         protected void btnCrearEntrada_Click(object sender, EventArgs e)
         {
-            ent = new Entrada(us, txtPassword.Text, txtDesc.Text, new List<int>());
-            bd.InsertaEntrada(ent);
-            lblOK.Visible = true;
-            Response.Redirect("CrearEntrada.aspx");
+            if (txtDesc.Text.Length < 1 && txtPassword.Text.Length < 5)
+            {
+                btnCrearEntrada.Enabled = false;
+            }
 
+            else 
+            {
+                ent = new Entrada(us, txtPassword.Text, txtDesc.Text, new List<int>());
+                bd.InsertaEntrada(ent);
+                this.txtPassword.Focus();
+                this.txtPassword.Text = String.Empty;
+                this.txtDesc.Focus();
+                this.txtDesc.Text = String.Empty;
+                lblOK.Visible = true;
+            }
+            
+        }
+
+        protected void btnSalir_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Inicio.aspx");
         }
     }
 }

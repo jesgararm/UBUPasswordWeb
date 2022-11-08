@@ -24,7 +24,6 @@ namespace www
             else { lblPriv.Text = "Usuario"; }
 
             lblFechaAcceso.Text = acceso.FechaAcceso.ToString();
-
         }
 
         protected void btnExit_Click(object sender, EventArgs e)

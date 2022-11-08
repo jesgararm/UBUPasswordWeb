@@ -46,16 +46,27 @@
         .auto-style10 {
             color: #00CC00;
         }
+        .auto-style11 {
+            text-align: right;
+        }
+        .auto-style12 {
+            margin-left: 0px;
+        }
+        .auto-style13 {
+            width: 94%;
+        }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
-            <table style="width:100%;">
+            <table class="auto-style13">
                 <tr>
                     <td class="auto-style1">&nbsp;</td>
                     <td class="auto-style4"><strong><span class="auto-style5">Crear Nueva Entrada</span></strong></td>
-                    <td>&nbsp;</td>
+                    <td class="auto-style11">
+                        <asp:Button ID="btnSalir" runat="server" CssClass="auto-style12" OnClick="btnSalir_Click" Text="Salir" Width="107px" />
+                    </td>
                 </tr>
                 <tr>
                     <td class="auto-style1">&nbsp;</td>
@@ -83,7 +94,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style9">Permitir Acceso:</td>
-                    <td class="auto-style7"></td>
+                    <td class="auto-style7">&nbsp;</td>
                     <td class="auto-style3"></td>
                 </tr>
                 <tr>

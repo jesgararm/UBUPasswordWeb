@@ -20,15 +20,15 @@ namespace www
         {
             lblLogin.Text = "Login";
             lblErrorInicioSesion.Visible = false;
-
-            db = (BaseDatos)Application["db"];
-            if (db == null)
-            {
-                db = new BaseDatos();
-                Application["db"] = db;
-            }
-            user = null;
-            user = (Usuario)Session["user"];
+                // Inicializar variables de aplicacion
+                db = (BaseDatos)Application["db"];
+                if (db == null)
+                {
+                    db = new BaseDatos();
+                    Application["db"] = db;
+                }
+                user = null;
+                user = (Usuario)Session["user"];
         }
 
         protected void btnEntrar_Click(object sender, EventArgs e)
@@ -36,7 +36,7 @@ namespace www
             this.user = db.ObtenerUsuario(txtNombreUs.Text);
             if (user != null)
                 {
-                    if (Desencriptar(user.Password) == txtPass.Text)
+                    if (user.ValidaPassword(txtPass.Text))
                     {
                         Session["user"] = user;
                         Acceso acc = new Acceso(user);
