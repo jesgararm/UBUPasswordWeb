@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Text.RegularExpressions;
 
 namespace www
 {
@@ -16,18 +17,28 @@ namespace www
         BaseDatos bd;
         List<ListItem> listado;
         List<ListItem> listadoSel;
+        String texto;
+        Regex reg;
+        
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblOK.Visible = false;
+            reg = new Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$");
             bd = (BaseDatos)Application["db"];
             us = (Usuario)Session["user"];
-
+            texto = (String)Session["label"];
             if (bd == null || us == null)
             {
                 Response.Redirect("InicioSesion.aspx");
             }
             listado = (List<ListItem>)Session["listado"];
             listadoSel = (List<ListItem>)Session["listadoSel"];
+            
+            if (texto == null)
+            {
+                texto = "";
+            }
+            
+            lblOK.Text = texto;
 
             if (listado == null)
             {
@@ -50,22 +61,33 @@ namespace www
 
         protected void btnCrearEntrada_Click(object sender, EventArgs e)
         {
-            if (txtDesc.Text.Length < 1 && txtPassword.Text.Length < 5)
+            if (reg.IsMatch(txtPassword.Text))
             {
-                btnCrearEntrada.Enabled = false;
-            }
+                List<int> listado = new List<int>();
 
+                // Recorremos los datos de llEmailSel
+                foreach (ListItem li in llEmailSel.Items)
+                {
+                    listado.Add(bd.ObtenerUsuario(li.Value).IdUsuario);
+                }
+
+                ent = new Entrada(us, txtPassword.Text, txtDesc.Text, listado);
+                bd.InsertaEntrada(ent);
+                Session["label"] = "Entrada creada";
+            }
             else 
             {
-                ent = new Entrada(us, txtPassword.Text, txtDesc.Text, new List<int>());
-                bd.InsertaEntrada(ent);
-                this.txtPassword.Focus();
-                this.txtPassword.Text = String.Empty;
-                this.txtDesc.Focus();
-                this.txtDesc.Text = String.Empty;
-                lblOK.Visible = true;
+                Session["label"] = "La contraseña no cumple con los estándares establecidos";
+
             }
             
+            this.txtPassword.Text = String.Empty;
+            this.txtDesc.Text = String.Empty;
+
+            Session["listado"] = null;
+            Session["listadoSel"] = null;
+            Response.Redirect("CrearEntrada.aspx");
+         
         }
 
         protected void btnSalir_Click(object sender, EventArgs e)
@@ -78,12 +100,30 @@ namespace www
         protected void btnAddEnt_Click(object sender, EventArgs e)
         {
             var sel = llEmail.SelectedItem;
-            listado.Remove(sel);
-            listadoSel.Add(sel);
-            llEmail.DataSource = listado;
-            llEmail.DataBind();
-            llEmailSel.DataSource = listadoSel;
-            llEmailSel.DataBind();
+            if (sel != null)
+            {
+                listado.Remove(sel);
+                listadoSel.Add(sel);
+                llEmail.DataSource = listado;
+                llEmail.DataBind();
+                llEmailSel.DataSource = listadoSel;
+                llEmailSel.DataBind();
+            }
+            
+        }
+
+        protected void btnRem_Click(object sender, EventArgs e)
+        {
+            var sel = llEmailSel.SelectedItem;
+            if (sel != null)
+            {
+                listadoSel.Remove(sel);
+                listado.Add(sel);
+                llEmail.DataSource = listado;
+                llEmail.DataBind();
+                llEmailSel.DataSource = listadoSel;
+                llEmailSel.DataBind();
+            }
         }
     }
 }
