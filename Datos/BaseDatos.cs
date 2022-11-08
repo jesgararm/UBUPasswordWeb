@@ -5,10 +5,10 @@ using System.Linq;
 using System.Net;
 using System.Runtime.Remoting.Channels;
 using ClasesLib;
-
-/// <summary>
-/// Summary description for Class1
-/// </summary>
+using static Comun.Utils;
+/// 
+/// Implementación de Base de Datos sin persistencia.
+/// 
 namespace Datos
 {
 	public class BaseDatos : ICapaDatos
@@ -223,20 +223,6 @@ namespace Datos
 		{
 			throw new NotImplementedException();
 		}
-
-        // Obtiene la ruta absoluta a un fichero
-        private string GetAbsolutePath(string relativePath)
-		{
-            
-			string path = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
-			int lastIndex = path.LastIndexOf("bin", StringComparison.OrdinalIgnoreCase);
-            string actualPath = path.Substring(0, lastIndex);
-            string projectPath = new Uri(actualPath).LocalPath;
-            string absolutePath = projectPath + relativePath;
-
-			return absolutePath;
-            
-        }
     }
 }
 

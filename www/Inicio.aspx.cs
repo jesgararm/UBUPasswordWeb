@@ -12,6 +12,8 @@ namespace www
     {
         Acceso acceso;
         Usuario us;
+        List<ListItem> misEntradas;
+        List<ListItem> entradas;
         protected void Page_Load(object sender, EventArgs e)
         {
             acceso = (Acceso)Session["acceso"];
@@ -34,6 +36,18 @@ namespace www
             else { lblPriv.Text = "Usuario"; }
 
             lblFechaAcceso.Text = acceso.FechaAcceso.ToString();
+
+            // Igualamos a variables de sesion
+            misEntradas = (List<ListItem>)Session["misEntradas"];
+            entradas = (List<ListItem>)Session["entradas"];
+
+            if (misEntradas == null||entradas == null)
+            {
+                misEntradas = new List<ListItem>();
+                Session["misEntradas"] = misEntradas;
+                entradas = new List<ListItem>();
+                Session["entradas"] = entradas;
+            }
         }
 
         protected void btnExit_Click(object sender, EventArgs e)

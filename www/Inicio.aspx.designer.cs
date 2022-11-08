@@ -87,6 +87,24 @@ namespace www
         protected global::System.Web.UI.WebControls.Label lblPriv;
 
         /// <summary>
+        /// Control llMisEntradas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox llMisEntradas;
+
+        /// <summary>
+        /// Control llEntradas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox llEntradas;
+
+        /// <summary>
         /// Control lblFechaAcceso.
         /// </summary>
         /// <remarks>

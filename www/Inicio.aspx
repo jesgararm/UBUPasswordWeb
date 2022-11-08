@@ -49,13 +49,28 @@
         .auto-style12 {
             width: 198px;
             text-align: left;
+            height: 23px;
         }
         .auto-style13 {
             text-align: right;
         }
         .auto-style14 {
             height: 23px;
-            width: 304px;
+            width: 251px;
+            text-align: center;
+            color: #006600;
+        }
+        .auto-style15 {
+            height: 23px;
+            width: 288px;
+            text-align: center;
+            color: #FF9900;
+        }
+        .auto-style16 {
+            width: 251px;
+        }
+        .auto-style17 {
+            width: 288px;
         }
     </style>
 </head>
@@ -111,12 +126,19 @@
                     <td class="auto-style1">&nbsp;</td>
                 </tr>
                 <tr>
+                    <td class="auto-style3">&nbsp;</td>
+                    <td class="auto-style6">
+                        &nbsp;</td>
+                    <td class="auto-style11" colspan="2">&nbsp;</td>
+                    <td class="auto-style1">&nbsp;</td>
+                </tr>
+                <tr>
                     <td class="auto-style3">Apellido</td>
                     <td class="auto-style6">
                         <asp:Label ID="lblAp" runat="server" Text="Apellido"></asp:Label>
                     </td>
-                    <td class="auto-style14">&nbsp;</td>
-                    <td class="auto-style11"></td>
+                    <td class="auto-style14"><strong>Mis Entradas:</strong></td>
+                    <td class="auto-style15"><strong>Entradas Accesibles:</strong></td>
                     <td class="auto-style1">&nbsp;</td>
                 </tr>
                 <tr>
@@ -124,7 +146,12 @@
                     <td class="auto-style5">
                         <asp:Label ID="lblPriv" runat="server" Text="Privilegio"></asp:Label>
                     </td>
-                    <td class="auto-style10" colspan="2">&nbsp;</td>
+                    <td class="auto-style16">
+                        <asp:ListBox ID="llMisEntradas" runat="server" Width="319px"></asp:ListBox>
+                    </td>
+                    <td class="auto-style17">
+                        <asp:ListBox ID="llEntradas" runat="server" Width="308px"></asp:ListBox>
+                    </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
@@ -141,11 +168,11 @@
                 </tr>
                 <tr>
                     <td class="auto-style12"><em>Último acceso:</em></td>
-                    <td class="auto-style5">
+                    <td class="auto-style6">
                         <asp:Label ID="lblFechaAcceso" runat="server" Text="FechaAcceso"></asp:Label>
                     </td>
-                    <td class="auto-style10" colspan="2">&nbsp;</td>
-                    <td>&nbsp;</td>
+                    <td class="auto-style11" colspan="2"></td>
+                    <td class="auto-style1"></td>
                 </tr>
             </table>
         </div>
