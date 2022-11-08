@@ -44,7 +44,7 @@
             color: #FF3300;
         }
         .auto-style10 {
-            color: #00CC00;
+            color: #FF0066;
         }
         .auto-style11 {
             text-align: right;
@@ -67,6 +67,21 @@
             height: 23px;
             width: 464px;
             text-align: center;
+        }
+        .auto-style17 {
+            font-size: medium;
+            font-style: italic;
+        }
+        .auto-style18 {
+            width: 426px;
+            height: 112px;
+        }
+        .auto-style19 {
+            width: 464px;
+            height: 112px;
+        }
+        .auto-style20 {
+            height: 112px;
         }
     </style>
 </head>
@@ -101,6 +116,20 @@
                     <td class="auto-style3"></td>
                 </tr>
                 <tr>
+                    <td class="auto-style18"></td>
+                    <td class="auto-style19" colspan="2">
+                        <ol aria-label="Mensajes en " class="auto-style17" data-list-id="chat-messages" role="list" style="border-style: none; border-color: inherit; border-width: 0px; margin: 0px; padding: 0px; font-weight: 400; font-family: Whitney, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; vertical-align: baseline; list-style: none; min-height: 0px; overflow: hidden; forced-color-adjust: none; color: rgb(0, 0, 0); font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial;" tabindex="0">
+                            <li>La contraseña debe tener: </li>
+                            <li>- 8 o más caracteres </li>
+                            <li>- Al menos un dígito </li>
+                            <li>- Al menos una minúscula </li>
+                            <li>- Al menos una mayúscula.</li>
+                            <li>&nbsp;-Puede tener otros símbolos.</li>
+                        </ol>
+                    </td>
+                    <td class="auto-style20"></td>
+                </tr>
+                <tr>
                     <td class="auto-style1">&nbsp;</td>
                     <td class="auto-style6" colspan="2">&nbsp;</td>
                     <td>&nbsp;</td>
@@ -119,15 +148,17 @@
                     <td class="auto-style2"></td>
                     <td class="auto-style16" colspan="2">
                         <asp:Button ID="btnAddEnt" runat="server" OnClick="btnAddEnt_Click" Text="+" Width="32px" />
+                        <asp:Button ID="btnRem" runat="server" OnClick="btnRem_Click" Text="-" Width="30px" />
                     </td>
+                    <td></td>
                     <td class="auto-style3"></td>
                 </tr>
                 <tr>
-                    <td class="auto-style1">&nbsp;</td>
-                    <td class="auto-style4" colspan="2">
-                        <asp:Label ID="lblOK" runat="server" CssClass="auto-style10" Text="Entrada creada con éxito."></asp:Label>
+                    <td class="auto-style2"></td>
+                    <td class="auto-style16" colspan="2">
+                        <asp:Label ID="lblOK" runat="server" CssClass="auto-style10"></asp:Label>
                     </td>
-                    <td>&nbsp;</td>
+                    <td class="auto-style3"></td>
                 </tr>
                 <tr>
                     <td class="auto-style1">&nbsp;</td>
