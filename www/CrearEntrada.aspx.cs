@@ -40,13 +40,13 @@ namespace www
                 }
                 Session["listado"] = listado;
                 Session["listadoSel"] = listadoSel;
-            }
 
-            llEmail.DataSource = listado;
-            llEmail.DataBind();
-            llEmailSel.DataSource = listadoSel;
-            llEmailSel.DataBind();
+                llEmail.DataSource = listado;
+                llEmail.DataBind();
+                llEmailSel.DataSource = listadoSel;
+                llEmailSel.DataBind();
             }
+        }
 
         protected void btnCrearEntrada_Click(object sender, EventArgs e)
         {
@@ -77,12 +77,13 @@ namespace www
 
         protected void btnAddEnt_Click(object sender, EventArgs e)
         {
-            ListItem sel = llEmail.SelectedItem;
+            var sel = llEmail.SelectedItem;
             listado.Remove(sel);
             listadoSel.Add(sel);
-            Session["listado"] = listado;
-            Session["listadoSel"] = listadoSel;
-
+            llEmail.DataSource = listado;
+            llEmail.DataBind();
+            llEmailSel.DataSource = listadoSel;
+            llEmailSel.DataBind();
         }
     }
 }

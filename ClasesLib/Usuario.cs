@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using static Comun.Utils;
 
 namespace ClasesLib
@@ -12,7 +13,10 @@ namespace ClasesLib
         private string email;
         private string password;
         private bool gestor;
-        
+        private bool activo;
+        private List<string> passwordRecuerdo;
+        private DateTime caducidadPassword;
+
         // Constructor de clase
         public Usuario(string email, string nombre, string apellido, string password, bool gestor = false)
         {

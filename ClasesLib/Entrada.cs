@@ -10,8 +10,8 @@ namespace ClasesLib
     public class Entrada
     {
         private Usuario usuario;
-        private String password;
-        private String descripcion;
+        private string password;
+        private string descripcion;
         private int idEntrada;
         List<int> listaAccesoUsuarios;
         public Entrada(Usuario usuario,String password, String descripcion,List<int> listUsuarios) 
