@@ -48,6 +48,7 @@ namespace www
                 {
                     listado.Add(new ListItem(s));
                 }
+                listado.Remove(new ListItem(us.Email));
                 Session["listado"] = listado;
                 Session["listadoSel"] = listadoSel;
 
@@ -93,6 +94,8 @@ namespace www
         {
             Session["listado"] = null;
             Session["listadoSel"] = null;
+            Session["entradas"] = null;
+            Session["misEntradas"] = null;
             Response.Redirect("Inicio.aspx");
         }
 

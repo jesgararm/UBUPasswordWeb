@@ -56,7 +56,7 @@
         }
         .auto-style14 {
             height: 23px;
-            width: 251px;
+            width: 659px;
             text-align: center;
             color: #006600;
         }
@@ -66,11 +66,30 @@
             text-align: center;
             color: #FF9900;
         }
-        .auto-style16 {
-            width: 251px;
-        }
         .auto-style17 {
             width: 288px;
+        }
+        .auto-style18 {
+            height: 23px;
+            width: 659px;
+            text-align: center;
+        }
+        .auto-style19 {
+            width: 198px;
+            color: #0033CC;
+            height: 139px;
+        }
+        .auto-style20 {
+            width: 210px;
+            height: 139px;
+        }
+        .auto-style21 {
+            text-align: center;
+            width: 659px;
+            height: 139px;
+        }
+        .auto-style22 {
+            height: 139px;
         }
     </style>
 </head>
@@ -146,13 +165,35 @@
                     <td class="auto-style5">
                         <asp:Label ID="lblPriv" runat="server" Text="Privilegio"></asp:Label>
                     </td>
-                    <td class="auto-style16">
-                        <asp:ListBox ID="llMisEntradas" runat="server" Width="319px"></asp:ListBox>
+                    <td class="auto-style9">
+                        <asp:ListBox ID="llMisEntradas" runat="server" Width="428px"></asp:ListBox>
                     </td>
                     <td class="auto-style17">
-                        <asp:ListBox ID="llEntradas" runat="server" Width="308px"></asp:ListBox>
+                        <asp:ListBox ID="llEntradas" runat="server" Width="396px"></asp:ListBox>
                     </td>
                     <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style3"></td>
+                    <td class="auto-style6"></td>
+                    <td class="auto-style18">
+                        <asp:Button ID="btnMisEntradas" runat="server" OnClick="btnMisEntradas_Click" Text="Ver" />
+                    </td>
+                    <td class="auto-style18">
+                        <asp:Button ID="btnEntradasAccesibles" runat="server" OnClick="btnEntradasAccesibles_Click" Text="Ver" />
+                    </td>
+                    <td class="auto-style1"></td>
+                </tr>
+                <tr>
+                    <td class="auto-style19"></td>
+                    <td class="auto-style20"></td>
+                    <td class="auto-style21">
+                        <asp:Label ID="lblMiEntrada" runat="server"></asp:Label>
+                    </td>
+                    <td class="auto-style21">
+                        <asp:Label ID="lblEntrada" runat="server"></asp:Label>
+                    </td>
+                    <td class="auto-style22"></td>
                 </tr>
                 <tr>
                     <td class="auto-style3"></td>
@@ -165,6 +206,12 @@
                     <td class="auto-style5">&nbsp;</td>
                     <td class="auto-style10" colspan="2">&nbsp;</td>
                     <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style3"></td>
+                    <td class="auto-style6"></td>
+                    <td class="auto-style11" colspan="2"></td>
+                    <td class="auto-style1"></td>
                 </tr>
                 <tr>
                     <td class="auto-style12"><em>Último acceso:</em></td>
