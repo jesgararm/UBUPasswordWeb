@@ -102,13 +102,31 @@ namespace Datos
 
 			usuarioRecuperado.Nombre = usuario.Nombre;
 			usuarioRecuperado.Apellido = usuario.Apellido;
-
+            
             dicUsuario[usuarioRecuperado.IdUsuario] = usuarioRecuperado;
 
 			return true;
 		}
 
-		public Usuario ObtenerUsuario(string email)
+        public void CambiarPasswordUsuario(Usuario usuario)
+        {
+            if (usuario == null || !dicUsuario.ContainsKey(usuario.IdUsuario))
+                return;
+
+            Usuario usuarioRecuperado = ObtenerUsuario(usuario.Email);
+
+            if (usuarioRecuperado.IdUsuario != 0 && usuarioRecuperado.IdUsuario != usuario.IdUsuario)
+                return;
+
+            if (usuario.Password == usuarioRecuperado.Password)
+            {
+				return;
+            }
+
+            dicUsuario[usuarioRecuperado.IdUsuario] = usuario;
+        }
+
+        public Usuario ObtenerUsuario(string email)
 		{
 			foreach (Usuario u in this.dicUsuario.Values)
 			{

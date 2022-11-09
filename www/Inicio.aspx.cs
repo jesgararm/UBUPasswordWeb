@@ -34,8 +34,13 @@ namespace www
             lblEmail.Text = us.Email;
             lblNom.Text = us.Nombre;
             lblAp.Text = us.Apellido;
+            lblValidez.Text = us.CaducidadPassword.ToString();
             if (us.Gestor)
-                { lblPriv.Text = "Admin"; }
+                { 
+                lblPriv.Text = "Admin";
+                btnUser.Visible = true;
+                btnLogs.Visible = true;
+            }
             else { lblPriv.Text = "Usuario"; }
 
             lblFechaAcceso.Text = acceso.FechaAcceso.ToString();
@@ -97,6 +102,16 @@ namespace www
             Entrada en = db.ObtenerEntrada(int.Parse(llEntradas.SelectedValue));
             lblMiEntrada.Text = "Entrada: " + llEntradas.SelectedValue + $"{Environment.NewLine}Descripcion: " + en.Descripcion
                 + $"{Environment.NewLine}\nContraseña: " + Desencriptar(en.Password);
+        }
+
+        protected void btnLogs_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Logs.aspx");
+        }
+
+        protected void btnUser_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("CrearUsuario.aspx");
         }
     }
 }

@@ -141,6 +141,24 @@ namespace www
         protected global::System.Web.UI.WebControls.Label lblEntrada;
 
         /// <summary>
+        /// Control btnLogs.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnLogs;
+
+        /// <summary>
+        /// Control btnUser.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnUser;
+
+        /// <summary>
         /// Control lblFechaAcceso.
         /// </summary>
         /// <remarks>
@@ -148,5 +166,14 @@ namespace www
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblFechaAcceso;
+
+        /// <summary>
+        /// Control lblValidez.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblValidez;
     }
 }
