@@ -33,7 +33,7 @@ namespace ClasesLib
             this.gestor = gestor;
             this.activo = false;
             this.passwordRecuerdo = new string[TAM];
-            this.caducidadPassword = DateTime.Today.AddMonths(1);
+            this.caducidadPassword = DateTime.Today.AddDays(30);
             this.contadorPassword = 0;
 
             AgregarPasswordAlmacen(password);
@@ -86,7 +86,7 @@ namespace ClasesLib
             set { caducidadPassword = value; }
         }
         // Valida contraseña de usuario
-        private bool ValidaPassword(string password)
+        public bool ValidaPassword(string password)
         {
             return this.password == Encriptar(password);
         }
@@ -156,7 +156,7 @@ namespace ClasesLib
 
             this.password = password;
             AgregarPasswordAlmacen(password);
-            caducidadPassword = DateTime.Today.AddMonths(1);
+            this.caducidadPassword = DateTime.Today.AddDays(30);
             return true;
         }
     }
