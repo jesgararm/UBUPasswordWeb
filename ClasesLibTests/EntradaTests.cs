@@ -61,5 +61,12 @@ namespace ClasesLib.Tests
             // Comprobamos que se elimina
             Assert.AreEqual(entrada.ListaAccesoUsuarios.Count, 0);
         }
+
+        [TestMethod()]
+        public void ExisteUsuarioTest()
+        {
+            Assert.Fail();
+        }
+        
     }
 }

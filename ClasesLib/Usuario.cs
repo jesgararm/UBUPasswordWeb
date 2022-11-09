@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices.WindowsRuntime;
 using static Comun.Utils;
 
 namespace ClasesLib
 {
     public class Usuario
     {
+        private static readonly int TAM = 3;
+
         // Atributos
         private int idUsuario;
         private string nombre;
@@ -14,9 +19,9 @@ namespace ClasesLib
         private string password;
         private bool gestor;
         private bool activo;
-        private List<string> passwordRecuerdo;
+        private string[] passwordRecuerdo;
         private DateTime caducidadPassword;
-
+        private int contadorPassword;
         // Constructor de clase
         public Usuario(string email, string nombre, string apellido, string password, bool gestor = false)
         {
@@ -26,6 +31,12 @@ namespace ClasesLib
             this.apellido = apellido;
             this.password = Encriptar(password);
             this.gestor = gestor;
+            this.activo = false;
+            this.passwordRecuerdo = new string[TAM];
+            this.caducidadPassword = new DateTime();
+            this.contadorPassword = 0;
+
+            AgregarPasswordAlmacen(Encriptar(password));
         }
 
         // Getters y Setters
@@ -59,11 +70,81 @@ namespace ClasesLib
             get { return gestor; }
             set { gestor = value; }
         }
-
+        public bool Activo
+        {
+            get { return activo; }
+            set { activo = value; }
+        }
+        public string[] PasswordRecuerdo
+        {
+            get { return passwordRecuerdo; }
+            set { passwordRecuerdo = value; }
+        }
+        public DateTime CaducidadPassword
+        {
+            get { return caducidadPassword; }
+            set { caducidadPassword = value; }
+        }
         // Valida contraseña de usuario
         public bool ValidaPassword(string password)
         {
             return this.password == Encriptar(password);
+        }
+        public int ContadorPassword
+        {
+            get { return contadorPassword; }
+            set { contadorPassword = value; }
+        }
+        public void AgregarPasswordAlmacen(string password) 
+        {
+            switch (contadorPassword) 
+            {
+                case 0:
+                    passwordRecuerdo[contadorPassword] = password;
+                    contadorPassword++;
+                    break;
+                case 1:
+                    passwordRecuerdo[contadorPassword] = password;
+                    contadorPassword++;
+                    break;
+                case 2:
+                    passwordRecuerdo[contadorPassword] = password;
+                    contadorPassword = 0;
+                    break;
+            }
+        }
+
+        public string RecuperarPasswordActualAlmacen() 
+        {
+            return passwordRecuerdo[contadorPassword - 1];
+        }
+
+        public bool ExistePasswordAlmacen(string password) 
+        {
+            foreach (string s in passwordRecuerdo) 
+            {
+                if (s == password)
+                    return true;
+            }
+
+            return false;
+        }
+
+        public bool PasswordCaducada() 
+        {
+            if (caducidadPassword < DateTime.Today)
+                return true;
+            return false;
+        }
+
+        public bool CambiarPassword(string password) 
+        {
+            // si ya existe en algunos de los slot de memoria de password
+            if (ExistePasswordAlmacen(password))
+                return false;
+
+            this.password = password;
+            return true;
         }
     }
 }

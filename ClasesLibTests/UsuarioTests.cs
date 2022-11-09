@@ -33,5 +33,35 @@ namespace ClasesLib.Tests
 
             Assert.IsFalse(usuario.ValidaPassword("123456"));
         }
+
+        [TestMethod()]
+        public void AgregarPasswordAlmacenTest()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void RecuperarPasswordActualAlmacenTest()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void ExistePasswordAlmacenTest()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void PasswordCaducadaTest()
+        {
+            Assert.Fail();
+        }
+
+        [TestMethod()]
+        public void CambiarPasswordTest()
+        {
+            Assert.Fail();
+        }
     }
 }
