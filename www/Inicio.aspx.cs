@@ -16,7 +16,7 @@ namespace www
         BaseDatos db;
         List<ListItem> misEntradas;
         List<ListItem> entradas;
-        BaseDatos db;
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             acceso = (Acceso)Session["acceso"];
