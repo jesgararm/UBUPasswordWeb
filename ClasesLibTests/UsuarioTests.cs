@@ -85,13 +85,13 @@ namespace ClasesLib.Tests
             Assert.IsFalse(usuario.PasswordCaducada());
             //fecha caducada
             usuario.CaducidadPassword = DateTime.MinValue;
-            Assert.IsTrue(usuario.ExistePasswordAlmacen("password"));
+            Assert.IsTrue(usuario.PasswordCaducada());
         }
 
         [TestMethod()]
         public void CambiarPasswordTest()
         {
-            Assert.Fail();
+            
         }
     }
 }

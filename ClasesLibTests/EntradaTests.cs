@@ -65,7 +65,27 @@ namespace ClasesLib.Tests
         [TestMethod()]
         public void ExisteUsuarioTest()
         {
-            Assert.Fail();
+            // Creamos usuario para pruebas
+            Usuario usuario = new Usuario("Usuario1@gmail.com", "Usuario1", "Pérez", "1234");
+            usuario.IdUsuario = 1;
+            // Creamos entrada para pruebas
+            Entrada entrada = new Entrada(usuario, "1234", "Entrada de prueba", new List<int>());
+
+            // Creamos usuario para pruebas
+            Usuario usuario2 = new Usuario("juanito@gmail.com", "Usuario2", "Pérez", "1234");
+            usuario2.IdUsuario = 2;
+            // Añadimos un usuario a la lista de acceso
+            entrada.AgregarUsuario(usuario);
+            entrada.AgregarUsuario(usuario2);
+
+            Assert.IsTrue(entrada.ExisteUsuario(usuario));
+            Assert.IsTrue(entrada.ExisteUsuario(usuario2));
+
+            // Creamos usuario para pruebas
+            Usuario usuario3 = new Usuario("pepito@gmail.com", "Usuario3", "Pérez", "1234");
+            usuario3.IdUsuario = 3;
+
+            Assert.IsFalse(entrada.ExisteUsuario(usuario3));
         }
         
     }
