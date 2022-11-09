@@ -36,19 +36,24 @@ namespace www
             this.user = db.ObtenerUsuario(txtNombreUs.Text);
             if (user != null)
                 {
-                    if (user.ValidaPassword(txtPass.Text))
-                    {
+                switch (user.CompruebaPassword(txtPass.Text))
+                {
+                    case 0:
+                        lblErrorInicioSesion.Text = "Contraseña incorrecta";
+                        lblErrorInicioSesion.Visible = true;
+                        break;
+                    case 1:
                         Session["user"] = user;
                         Acceso acc = new Acceso(user);
                         db.InsertaAcceso(acc);
                         Session["acceso"] = acc;
                         Response.Redirect("Inicio.aspx");
-                    }
-                    else
-                    {
-                        lblErrorInicioSesion.Visible = true;
-                        lblErrorInicioSesion.Text = "Contraseña incorrecta";
-                    }
+                        break;
+                    case 2:
+                        Session["user"] = user;
+                        Response.Redirect("Pass.aspx");
+                        break;
+                }
                 }
             else
                 {

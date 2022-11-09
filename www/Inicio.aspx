@@ -204,7 +204,12 @@
                 <tr>
                     <td class="auto-style4">&nbsp;</td>
                     <td class="auto-style5">&nbsp;</td>
-                    <td class="auto-style10" colspan="2">&nbsp;</td>
+                    <td class="auto-style9">
+                        <asp:Button ID="btnLogs" runat="server" OnClick="btnLogs_Click" Text="Ver Logs" Visible="False" />
+                    </td>
+                    <td class="auto-style9">
+                        <asp:Button ID="btnUser" runat="server" OnClick="btnUser_Click" Text="Crear Usuario" Visible="False" />
+                    </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
@@ -220,6 +225,14 @@
                     </td>
                     <td class="auto-style11" colspan="2"></td>
                     <td class="auto-style1"></td>
+                </tr>
+                <tr>
+                    <td class="auto-style12"><em>Contraseña Válida hasta:</em></td>
+                    <td class="auto-style6">
+                        <asp:Label ID="lblValidez" runat="server"></asp:Label>
+                    </td>
+                    <td class="auto-style11" colspan="2">&nbsp;</td>
+                    <td class="auto-style1">&nbsp;</td>
                 </tr>
             </table>
         </div>
