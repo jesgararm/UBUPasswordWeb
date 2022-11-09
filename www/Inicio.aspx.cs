@@ -1,4 +1,5 @@
 ﻿using ClasesLib;
+using Datos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,14 @@ namespace www
     {
         Acceso acceso;
         Usuario us;
+        BaseDatos db;
         List<ListItem> misEntradas;
         List<ListItem> entradas;
         protected void Page_Load(object sender, EventArgs e)
         {
             acceso = (Acceso)Session["acceso"];
             us = (Usuario)Session["user"];
+            db = (BaseDatos)Application["db"];
 
             if (acceso == null || us == null)
             {
@@ -44,8 +47,16 @@ namespace www
             if (misEntradas == null||entradas == null)
             {
                 misEntradas = new List<ListItem>();
+                foreach (int idEnt in db.ObtenerIdEntradasPropiedadUsuario(us))
+                {
+                    misEntradas.Add(new ListItem(idEnt.ToString()));
+                }
                 Session["misEntradas"] = misEntradas;
                 entradas = new List<ListItem>();
+                foreach (int idEnt in db.ObtenerIdEntradasAccesoUsuario(us))
+                {
+                    entradas.Add(new ListItem(idEnt.ToString()));
+                }
                 Session["entradas"] = entradas;
             }
         }
@@ -54,6 +65,8 @@ namespace www
         {
             Session["user"] = null;
             Session["acceso"] = null;
+            Session["misEntradas"] = null;
+            Session["entradas"] = null;
             Response.Redirect("InicioSesion.aspx");
         }
 
