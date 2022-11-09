@@ -27,7 +27,6 @@ namespace ClasesLib.Tests
         [TestMethod()]
         public void ValidaPasswordTest()
         {
-            // Comprobamos que crea un usuario
             Usuario usuario = new Usuario("email@email.com", "nombre", "apellido", "password");
             Assert.IsTrue(usuario.ValidaPassword("password"));
 
@@ -37,25 +36,56 @@ namespace ClasesLib.Tests
         [TestMethod()]
         public void AgregarPasswordAlmacenTest()
         {
-            Assert.Fail();
-        }
-
-        [TestMethod()]
-        public void RecuperarPasswordActualAlmacenTest()
-        {
-            Assert.Fail();
+            Usuario usuario = new Usuario("email@email.com", "nombre", "apellido", "password");
+            Assert.AreEqual(usuario.PasswordRecuerdo[0], Encriptar("password"));
+            Assert.AreEqual(usuario.ContadorPassword, 1);
+            usuario.AgregarPasswordAlmacen("prueba");
+            Assert.AreEqual(usuario.PasswordRecuerdo[1],Encriptar("prueba"));
+            Assert.AreEqual(usuario.ContadorPassword, 2);
+            usuario.AgregarPasswordAlmacen("prueba2");
+            Assert.AreEqual(usuario.PasswordRecuerdo[2], Encriptar("prueba2"));
+            Assert.AreEqual(usuario.ContadorPassword, 0);
+            usuario.AgregarPasswordAlmacen("reset");
+            Assert.AreEqual(usuario.PasswordRecuerdo[0], Encriptar("reset"));
+            Assert.AreEqual(usuario.ContadorPassword, 1);
         }
 
         [TestMethod()]
         public void ExistePasswordAlmacenTest()
         {
-            Assert.Fail();
+            Usuario usuario = new Usuario("email@email.com", "nombre", "apellido", "password");
+            Assert.AreEqual(usuario.PasswordRecuerdo[0], Encriptar("password"));
+            Assert.AreEqual(usuario.ContadorPassword, 1);
+            Assert.IsTrue(usuario.ExistePasswordAlmacen("password"));
+            usuario.AgregarPasswordAlmacen("prueba");
+            Assert.IsTrue(usuario.ExistePasswordAlmacen("prueba"));
+            Assert.AreEqual(usuario.PasswordRecuerdo[1], Encriptar("prueba"));
+            Assert.AreEqual(usuario.ContadorPassword, 2);
+            Assert.IsTrue(usuario.ExistePasswordAlmacen("prueba"));
+            usuario.AgregarPasswordAlmacen("prueba2");
+            Assert.AreEqual(usuario.PasswordRecuerdo[2], Encriptar("prueba2"));
+            Assert.AreEqual(usuario.ContadorPassword, 0);
+            Assert.IsTrue(usuario.ExistePasswordAlmacen("prueba2"));
+            usuario.AgregarPasswordAlmacen("reset");
+            Assert.AreEqual(usuario.PasswordRecuerdo[0], Encriptar("reset"));
+            Assert.AreEqual(usuario.ContadorPassword, 1);
+            Assert.IsTrue(usuario.ExistePasswordAlmacen("reset"));
+
+            Assert.IsFalse(usuario.ExistePasswordAlmacen("password"));
         }
 
         [TestMethod()]
         public void PasswordCaducadaTest()
         {
-            Assert.Fail();
+            Usuario usuario = new Usuario("email@email.com", "nombre", "apellido", "password");
+            //fecha caducidad igual a hoy
+            Assert.IsFalse(usuario.PasswordCaducada());
+            //fecha caducidad en 1 mes
+            usuario.CaducidadPassword = usuario.CaducidadPassword.AddDays(30);
+            Assert.IsFalse(usuario.PasswordCaducada());
+            //fecha caducada
+            usuario.CaducidadPassword = DateTime.MinValue;
+            Assert.IsTrue(usuario.ExistePasswordAlmacen("password"));
         }
 
         [TestMethod()]

@@ -36,7 +36,7 @@ namespace ClasesLib
             this.caducidadPassword = new DateTime();
             this.contadorPassword = 0;
 
-            AgregarPasswordAlmacen(Encriptar(password));
+            AgregarPasswordAlmacen(password);
         }
 
         // Getters y Setters
@@ -100,30 +100,25 @@ namespace ClasesLib
             switch (contadorPassword) 
             {
                 case 0:
-                    passwordRecuerdo[contadorPassword] = password;
+                    passwordRecuerdo[contadorPassword] = Encriptar(password);
                     contadorPassword++;
                     break;
                 case 1:
-                    passwordRecuerdo[contadorPassword] = password;
+                    passwordRecuerdo[contadorPassword] = Encriptar(password);
                     contadorPassword++;
                     break;
                 case 2:
-                    passwordRecuerdo[contadorPassword] = password;
+                    passwordRecuerdo[contadorPassword] = Encriptar(password);
                     contadorPassword = 0;
                     break;
             }
-        }
-
-        public string RecuperarPasswordActualAlmacen() 
-        {
-            return passwordRecuerdo[contadorPassword - 1];
         }
 
         public bool ExistePasswordAlmacen(string password) 
         {
             foreach (string s in passwordRecuerdo) 
             {
-                if (s == password)
+                if (s == Encriptar(password))
                     return true;
             }
 
