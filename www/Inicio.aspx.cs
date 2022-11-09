@@ -13,6 +13,7 @@ namespace www
     {
         Acceso acceso;
         Usuario us;
+        BaseDatos db;
         List<ListItem> misEntradas;
         List<ListItem> entradas;
         BaseDatos db;
