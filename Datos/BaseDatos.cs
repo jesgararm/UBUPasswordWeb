@@ -241,6 +241,11 @@ namespace Datos
 		{
 			throw new NotImplementedException();
 		}
+
+        public List<Acceso> ObtenerAccesos()
+        {
+            return dicLog.Values.ToList();
+        }
     }
 }
 
