@@ -58,9 +58,26 @@
                     <td class="auto-style3">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td class="auto-style1">&nbsp;</td>
+                    <td class="auto-style1">&nbsp;<table style="width: 100%;">
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </table>
+                    </td>
                     <td class="auto-style4">
-                        <asp:GridView ID="grdAccesos" runat="server">
+                        <asp:GridView ID="grdAccesos" runat="server" OnSelectedIndexChanged="grdAccesos_SelectedIndexChanged">
                         </asp:GridView>
                     </td>
                     <td>&nbsp;</td>
@@ -73,5 +90,6 @@
             </table>
         </div>
     </form>
+    <asp:GridView runat="server" ID="grdLogs" ViewStateMode="Enabled" OnSelectedIndexChanged="grdLogs_SelectedIndexChanged"></asp:GridView>
 </body>
 </html>
