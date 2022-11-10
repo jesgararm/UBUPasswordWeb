@@ -15,16 +15,23 @@ namespace www
         Usuario us;
         BaseDatos bd;
         string accSel;
+        string texto;
         protected void Page_Load(object sender, EventArgs e)
         {
             us = (Usuario)Session["user"];
             bd = (BaseDatos)Application["db"];
+            texto = (string)Session["labelDos"];
 
             if (us == null || bd == null || !us.Gestor)
             {
                 Response.Redirect("InicioSesion.aspx");
             }
 
+            if (texto == null)
+            {
+                texto = "";
+            }
+            lblLogs.Text = texto;
             DataTable accesos = new DataTable();
             accesos.Columns.Add("Id.", typeof(string));
             accesos.Columns.Add("Email", typeof(string));
@@ -45,8 +52,7 @@ namespace www
             if (accSel != null) 
             {
                 DataTable logs = new DataTable();
-                grdLogs.Visible = true;
-                logs.Columns.Add("Id.", typeof(string));
+                logs.Columns.Add("IdEntrada", typeof(string));
                 logs.Columns.Add("Fecha", typeof(DateTime));
 
                 foreach (EntradaLog log in bd.ObtenerAcceso(Int32.Parse(accSel)).EntradasLog)
@@ -60,13 +66,21 @@ namespace www
 
         protected void btnExit_Click(object sender, EventArgs e)
         {
+            Session["listado"] = null;
+            Session["listadoSel"] = null;
+            Session["entradas"] = null;
+            Session["misEntradas"] = null;
+            Session["accesoSeleccionado"] = null;
+            Session["labelDos"] = null;
             Server.Transfer("Inicio.aspx", true);
         }
 
         protected void grdAccesos_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int row = Convert.ToInt32(e.CommandArgument);
-            Session["accesoSeleccionado"] = grdAccesos.Rows[row].Cells[0].Text;
+            string idAcceso = grdAccesos.Rows[row].Cells[0].Text;
+            Session["accesoSeleccionado"] = idAcceso;
+            Session["labelDos"] = "Logs del acceso " + idAcceso;
             Response.Redirect("Logs.aspx");
         }
     }

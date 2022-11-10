@@ -38,6 +38,13 @@
             color: #0033CC;
             background-color: #FFFFFF;
         }
+        .auto-style9 {
+            color: #FF3300;
+        }
+        .auto-style10 {
+            height: 26px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -59,7 +66,9 @@
                 <tr>
                     <td class="auto-style2">&nbsp;</td>
                     <td class="auto-style5"><strong><span class="auto-style8">Tabla de Accesos.</span></strong></td>
-                    <td class="auto-style3">&nbsp;</td>
+                    <td class="auto-style10"><strong>
+                        <asp:Label ID="lblLogs" runat="server" CssClass="auto-style9"></asp:Label>
+                        </strong></td>
                 </tr>
                 <tr>
                     <td class="auto-style1">&nbsp;<table style="width: 100%;">
@@ -91,7 +100,11 @@
                         </asp:GridView>
                     </td>
                     <td>
-                        <asp:GridView ID="grdLogs" runat="server" Visible="False">
+                        <asp:GridView ID="grdLogs" runat="server"  AutoGenerateColumns="False">
+                            <Columns>
+                            <asp:BoundField DataField="IdEntrada" HeaderText="IdEntrada" />
+                            <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
+                        </Columns>
                         </asp:GridView>
                     </td>
                 </tr>

@@ -96,6 +96,7 @@ namespace www
             Session["listadoSel"] = null;
             Session["entradas"] = null;
             Session["misEntradas"] = null;
+            Session["label"] = null;
             Response.Redirect("Inicio.aspx");
         }
 

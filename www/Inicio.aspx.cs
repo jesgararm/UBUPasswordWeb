@@ -95,6 +95,8 @@ namespace www
             try
             {
                 Entrada en = db.ObtenerEntrada(int.Parse(llMisEntradas.SelectedValue));
+                acceso.InsertarEntrada(new EntradaLog(en, DateTime.Now));
+                db.ModificarAcceso(acceso);
                 lblMiEntrada.Text = "Entrada: " + llMisEntradas.SelectedValue + $"{Environment.NewLine}Descripcion: " + en.Descripcion
                     + $"{Environment.NewLine}Contraseña: " + Desencriptar(en.Password);
             }
@@ -109,8 +111,10 @@ namespace www
         {
             try
             {
-                    Entrada en = db.ObtenerEntrada(int.Parse(llEntradas.SelectedValue));
-                    lblEntrada.Text = "Entrada: " + llEntradas.SelectedValue + $"{Environment.NewLine}Descripcion: " + en.Descripcion
+                Entrada en = db.ObtenerEntrada(int.Parse(llEntradas.SelectedValue));
+                acceso.InsertarEntrada(new EntradaLog(en, DateTime.Now));
+                db.ModificarAcceso(acceso);
+                lblEntrada.Text = "Entrada: " + llEntradas.SelectedValue + $"{Environment.NewLine}Descripcion: " + en.Descripcion
                         + $"{Environment.NewLine}Contraseña: " + Desencriptar(en.Password);
                 }
             catch (Exception)

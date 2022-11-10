@@ -246,6 +246,11 @@ namespace Datos
         {
             return dicLog.Values.ToList();
         }
+
+        public void ModificarAcceso(Acceso acc)
+        {
+            dicLog[acc.IdAcceso] = acc;
+        }
     }
 }
 
