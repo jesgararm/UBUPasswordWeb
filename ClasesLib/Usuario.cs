@@ -111,9 +111,9 @@ namespace ClasesLib
             get { return contadorPassword; }
             set { contadorPassword = value; }
         }
-        public void AgregarPasswordAlmacen(string password) 
+        public void AgregarPasswordAlmacen(string password)
         {
-            switch (contadorPassword) 
+            switch (contadorPassword)
             {
                 case 0:
                     passwordRecuerdo[contadorPassword] = Encriptar(password);
@@ -130,9 +130,9 @@ namespace ClasesLib
             }
         }
 
-        public bool ExistePasswordAlmacen(string password) 
+        public bool ExistePasswordAlmacen(string password)
         {
-            foreach (string s in passwordRecuerdo) 
+            foreach (string s in passwordRecuerdo)
             {
                 if (s == Encriptar(password))
                     return true;
@@ -141,20 +141,20 @@ namespace ClasesLib
             return false;
         }
 
-        public bool PasswordCaducada() 
+        public bool PasswordCaducada()
         {
             if (caducidadPassword < DateTime.Today)
                 return true;
             return false;
         }
 
-        public bool CambiarPassword(string password) 
+        public bool CambiarPassword(string password)
         {
             // si ya existe en algunos de los slot de memoria de password
             if (ExistePasswordAlmacen(password))
                 return false;
 
-            this.password = password;
+            this.password = Encriptar(password);
             AgregarPasswordAlmacen(password);
             this.caducidadPassword = DateTime.Today.AddDays(30);
             return true;

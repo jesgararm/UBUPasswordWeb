@@ -17,9 +17,10 @@ namespace www
         string texto;
         protected void Page_Load(object sender, EventArgs e)
         {
-            db = (BaseDatos)Session["db"];
-            us = (Usuario)Session["us"];
+            us = (Usuario)Session["user"];
+            db = (BaseDatos)Application["db"];
             texto = (string)Session["labelTres"];
+
             if (db == null || us == null || !us.Gestor) {
                 Response.Redirect("InicioSesion.aspx");
             }

@@ -35,7 +35,7 @@ namespace www
         {
             this.user = db.ObtenerUsuario(txtNombreUs.Text);
             if (user != null)
-                {
+            {
                 switch (user.CompruebaPassword(txtPass.Text))
                 {
                     case 0:
@@ -54,12 +54,12 @@ namespace www
                         Response.Redirect("Pass.aspx");
                         break;
                 }
-                }
+            }
             else
-                {
-                    lblErrorInicioSesion.Visible = true;
-                    lblErrorInicioSesion.Text = "Usuario incorrecto";
-                }
+            {
+                lblErrorInicioSesion.Visible = true;
+                lblErrorInicioSesion.Text = "Usuario incorrecto";
             }
         }
     }
+}

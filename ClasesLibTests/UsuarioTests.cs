@@ -91,7 +91,15 @@ namespace ClasesLib.Tests
         [TestMethod()]
         public void CambiarPasswordTest()
         {
-            
+            Usuario usuario = new Usuario("email@email.com", "nombre", "apellido", "password");
+            Assert.IsTrue(usuario.CambiarPassword("Email1234"));
+
+            Assert.IsFalse(usuario.CambiarPassword("password"));
+            Assert.IsFalse(usuario.CambiarPassword("Email1234"));
+
+            usuario.CaducidadPassword = DateTime.Today.AddDays(-10);
+            Assert.IsTrue(usuario.CambiarPassword("Abcde1234"));
+            Assert.AreEqual(usuario.CaducidadPassword, DateTime.Today.AddDays(30));
         }
     }
 }
