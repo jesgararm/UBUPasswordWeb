@@ -232,7 +232,8 @@
                 <tr>
                     <td class="auto-style3"></td>
                     <td class="auto-style6"></td>
-                    <td class="auto-style11" colspan="2"></td>
+                    <td class="auto-style11">&nbsp;</td>
+                    <td class="auto-style18">&nbsp;</td>
                     <td class="auto-style1"></td>
                 </tr>
                 <tr>
@@ -240,9 +241,12 @@
                     <td class="auto-style6">
                         <asp:Label ID="lblFechaAcceso" runat="server" Text="FechaAcceso"></asp:Label>
                     </td>
-                    <td class="auto-style18" colspan="2"><strong>
+                    <td class="auto-style18"><strong>
                         <asp:Label ID="lblError" runat="server" CssClass="auto-style26"></asp:Label>
                         </strong></td>
+                    <td class="auto-style18">
+                        <asp:Button ID="btnEliminarUs" runat="server" Height="25px" OnClick="btnEliminarUs_Click" Text="Eliminar Usuario" Visible="False" Width="128px" />
+                    </td>
                     <td class="auto-style1"></td>
                 </tr>
                 <tr>

@@ -40,6 +40,7 @@ namespace www
                 lblPriv.Text = "Admin";
                 btnUser.Visible = true;
                 btnLogs.Visible = true;
+                btnEliminarUs.Visible = true;
             }
             else { lblPriv.Text = "Usuario"; }
 
@@ -131,7 +132,12 @@ namespace www
 
         protected void btnUser_Click(object sender, EventArgs e)
         {
-            Response.Redirect("CrearUsuario.aspx");
+            Server.Transfer("CrearUsuario.aspx",true);
+        }
+
+        protected void btnEliminarUs_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("EliminarUsuario.aspx",true);
         }
     }
 }
