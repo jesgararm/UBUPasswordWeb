@@ -26,8 +26,8 @@ namespace www
             }
 
             DataTable accesos = new DataTable();
-            accesos.Columns.Add("Id.", typeof(String));
-            accesos.Columns.Add("Email", typeof(String));
+            accesos.Columns.Add("Id.", typeof(string));
+            accesos.Columns.Add("Email", typeof(string));
             accesos.Columns.Add("Fecha", typeof(DateTime));
             
             if (!Page.IsPostBack)
@@ -36,9 +36,9 @@ namespace www
                 {
                     accesos.Rows.Add(acc.IdAcceso, acc.Usuario.Email, acc.FechaAcceso);
                 }
-            }
-            grdAccesos.DataSource = accesos;
-            grdAccesos.DataBind();
+                grdAccesos.DataSource = accesos;
+                grdAccesos.DataBind();
+            }           
 
             accSel = (string)Session["accesoSeleccionado"];
 
@@ -46,7 +46,7 @@ namespace www
             {
                 DataTable logs = new DataTable();
                 grdLogs.Visible = true;
-                logs.Columns.Add("Id.", typeof(String));
+                logs.Columns.Add("Id.", typeof(string));
                 logs.Columns.Add("Fecha", typeof(DateTime));
 
                 foreach (EntradaLog log in bd.ObtenerAcceso(Int32.Parse(accSel)).EntradasLog)
@@ -67,7 +67,7 @@ namespace www
         {
             int row = Convert.ToInt32(e.CommandArgument);
             Session["accesoSeleccionado"] = grdAccesos.Rows[row].Cells[0].Text;
-            Server.Transfer("Logs.aspx", true);
+            Response.Redirect("Logs.aspx");
         }
     }
 }
