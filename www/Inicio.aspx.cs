@@ -92,16 +92,32 @@ namespace www
 
         protected void btnMisEntradas_Click(object sender, EventArgs e)
         {
-            Entrada en = db.ObtenerEntrada(int.Parse(llMisEntradas.SelectedValue));
-            lblMiEntrada.Text = "Entrada: " + llMisEntradas.SelectedValue + $"{Environment.NewLine}Descripcion: " + en.Descripcion
-                + $"{Environment.NewLine}Contraseña: " + Desencriptar(en.Password);
+            try
+            {
+                Entrada en = db.ObtenerEntrada(int.Parse(llMisEntradas.SelectedValue));
+                lblMiEntrada.Text = "Entrada: " + llMisEntradas.SelectedValue + $"{Environment.NewLine}Descripcion: " + en.Descripcion
+                    + $"{Environment.NewLine}Contraseña: " + Desencriptar(en.Password);
+            }
+            catch (Exception)
+            {
+                lblError.Text = "No hay entradas";
+            }
+           
         }
 
         protected void btnEntradasAccesibles_Click(object sender, EventArgs e)
         {
-            Entrada en = db.ObtenerEntrada(int.Parse(llEntradas.SelectedValue));
-            lblMiEntrada.Text = "Entrada: " + llEntradas.SelectedValue + $"{Environment.NewLine}Descripcion: " + en.Descripcion
-                + $"{Environment.NewLine}\nContraseña: " + Desencriptar(en.Password);
+            try
+            {
+                    Entrada en = db.ObtenerEntrada(int.Parse(llEntradas.SelectedValue));
+                    lblEntrada.Text = "Entrada: " + llEntradas.SelectedValue + $"{Environment.NewLine}Descripcion: " + en.Descripcion
+                        + $"{Environment.NewLine}Contraseña: " + Desencriptar(en.Password);
+                }
+            catch (Exception)
+            {
+                lblError.Text = "No hay entradas";
+            }
+            
         }
 
         protected void btnLogs_Click(object sender, EventArgs e)

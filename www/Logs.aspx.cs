@@ -14,6 +14,7 @@ namespace www
     {
         Usuario us;
         BaseDatos bd;
+        string accSel;
         protected void Page_Load(object sender, EventArgs e)
         {
             us = (Usuario)Session["user"];
@@ -28,29 +29,45 @@ namespace www
             accesos.Columns.Add("Id.", typeof(String));
             accesos.Columns.Add("Email", typeof(String));
             accesos.Columns.Add("Fecha", typeof(DateTime));
-            accesos.Columns.Add("Logs", typeof(DataTable));
+            
             if (!Page.IsPostBack)
             {
                 foreach(Acceso acc in bd.ObtenerAccesos())
                 {
-                    DataTable log = new DataTable();
-                    log.Columns.Add("Entrada", typeof(int));
-                    log.Columns.Add("Fecha", typeof(DateTime));
-                    foreach (EntradaLog el in acc.EntradasLog)
-                    {
-                        log.Rows.Add(el.Entrada.IdEntrada, el.Fecha);
-                    }
-                    accesos.Rows.Add(acc.IdAcceso, acc.Usuario.Email, acc.FechaAcceso, log);
+                    accesos.Rows.Add(acc.IdAcceso, acc.Usuario.Email, acc.FechaAcceso);
                 }
             }
             grdAccesos.DataSource = accesos;
             grdAccesos.DataBind();
 
+            accSel = (string)Session["accesoSeleccionado"];
+
+            if (accSel != null) 
+            {
+                DataTable logs = new DataTable();
+                grdLogs.Visible = true;
+                logs.Columns.Add("Id.", typeof(String));
+                logs.Columns.Add("Fecha", typeof(DateTime));
+
+                foreach (EntradaLog log in bd.ObtenerAcceso(Int32.Parse(accSel)).EntradasLog)
+                {
+                    logs.Rows.Add(log.Entrada.IdEntrada, log.Fecha);
+                }
+                grdLogs.DataSource = logs;
+                grdLogs.DataBind();
+            }
         }
 
         protected void btnExit_Click(object sender, EventArgs e)
         {
             Server.Transfer("Inicio.aspx", true);
+        }
+
+        protected void grdAccesos_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int row = Convert.ToInt32(e.CommandArgument);
+            Session["accesoSeleccionado"] = grdAccesos.Rows[row].Cells[0].Text;
+            Server.Transfer("Logs.aspx", true);
         }
     }
 }

@@ -34,6 +34,10 @@
             height: 26px;
             text-align: right;
         }
+        .auto-style8 {
+            color: #0033CC;
+            background-color: #FFFFFF;
+        }
     </style>
 </head>
 <body>
@@ -54,7 +58,7 @@
                 </tr>
                 <tr>
                     <td class="auto-style2">&nbsp;</td>
-                    <td class="auto-style5">&nbsp;</td>
+                    <td class="auto-style5"><strong><span class="auto-style8">Tabla de Accesos.</span></strong></td>
                     <td class="auto-style3">&nbsp;</td>
                 </tr>
                 <tr>
@@ -77,10 +81,19 @@
                     </table>
                     </td>
                     <td class="auto-style4">
-                        <asp:GridView ID="grdAccesos" runat="server" OnSelectedIndexChanged="grdAccesos_SelectedIndexChanged">
+                        <asp:GridView ID="grdAccesos" runat="server" onrowcommand="grdAccesos_RowCommand" AutoGenerateColumns="False">
+                        <Columns>
+                            <asp:BoundField DataField="Id." HeaderText="Id." />
+                            <asp:BoundField DataField="Email" HeaderText="Email" />
+                            <asp:BoundField DataField="Fecha" HeaderText="Fecha" />
+                            <asp:ButtonField ButtonType="Button" Text="Ver" HeaderText="Más Info" />
+                        </Columns>
                         </asp:GridView>
                     </td>
-                    <td>&nbsp;</td>
+                    <td>
+                        <asp:GridView ID="grdLogs" runat="server" Visible="False">
+                        </asp:GridView>
+                    </td>
                 </tr>
                 <tr>
                     <td class="auto-style1">&nbsp;</td>
@@ -90,6 +103,5 @@
             </table>
         </div>
     </form>
-    <asp:GridView runat="server" ID="grdLogs" ViewStateMode="Enabled" OnSelectedIndexChanged="grdLogs_SelectedIndexChanged"></asp:GridView>
-</body>
+    </body>
 </html>
