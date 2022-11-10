@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CrearEntrada.aspx" />
+    <Content Include="CrearUsuario.aspx" />
     <Content Include="Inicio.aspx" />
     <Content Include="InicioSesion.aspx" />
     <Content Include="Logs.aspx" />
@@ -85,6 +86,13 @@
     </Compile>
     <Compile Include="CrearEntrada.aspx.designer.cs">
       <DependentUpon>CrearEntrada.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CrearUsuario.aspx.cs">
+      <DependentUpon>CrearUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CrearUsuario.aspx.designer.cs">
+      <DependentUpon>CrearUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inicio.aspx.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>

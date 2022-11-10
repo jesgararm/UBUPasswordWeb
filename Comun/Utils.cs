@@ -7,7 +7,7 @@ namespace Comun
     public static class Utils
     {
         private static Regex reg = new Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$");
-
+        private static Regex regDos = new Regex(@"^[\w!#$%&'+-/=?^_`{|}~]+(.[\w!#$%&'+-/=?^_`{|}~]+)*@((([-\w]+.)+[a-zA-Z]{2,4})|(([0-9]{1,3}.){3}[0-9]{1,3}))\z");
         // Encripta en base 64 el string pasado
         // retorna el string encriptado.
         public static string Encriptar(string password)
@@ -29,6 +29,13 @@ namespace Comun
         public static bool ValidarPassword(string password)
         {
             return reg.IsMatch(password);
+        }
+
+        // Valida si el email cumple con los requisitos
+        // retorna true si cumple, false si no.
+        public static bool ValidarEmail(string email)
+        {
+            return regDos.IsMatch(email);
         }
 
         // Obtiene la ruta absoluta a un fichero.
