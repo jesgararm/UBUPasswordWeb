@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ClasesLib.Tests.AccesoTests" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACCAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAA=</HashCode>
+      <FileName>AccesoTests.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClasesLib.Tests.EntradaLogTests" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>EntradaLogTests.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClasesLib.Tests.EntradaTests">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAQAAACAAAAAAAAAAAACAAEAAAAAAAAAA=</HashCode>
+      <FileName>EntradaTests.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClasesLib.Tests.UsuarioTests">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAIABAgAAAAAAAAAgAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>UsuarioTests.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
