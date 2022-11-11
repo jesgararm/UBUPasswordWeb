@@ -64,7 +64,7 @@
                 <tr>
                     <td class="auto-style4">&nbsp;</td>
                     <td class="auto-style6">
-                        <asp:DropDownList ID="ddlUsuarios" runat="server" Height="22px" Width="268px" OnSelectedIndexChanged="ddlUsuarios_SelectedIndexChanged">
+                        <asp:DropDownList ID="ddlUsuarios" runat="server" Height="22px" Width="268px" OnSelectedIndexChanged="ddlUsuarios_SelectedIndexChanged" AutoPostBack="True">
                         </asp:DropDownList>
                     </td>
                     <td>&nbsp;</td>

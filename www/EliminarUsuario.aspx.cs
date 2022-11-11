@@ -68,6 +68,8 @@ namespace www
                             listadoNuevo.Add(new ListItem(u));
                         }
                     }
+                    ddlUsuarios.DataSource = listadoNuevo;
+                    ddlUsuarios.DataBind();
                 }
                 else
                 {
@@ -90,6 +92,7 @@ namespace www
         protected void ddlUsuarios_SelectedIndexChanged(object sender, EventArgs e)
         {
             lblHelp.Text = "Has seleccionado el usuario " + ddlUsuarios.SelectedItem.Text;
+            lblMessage.Text = "";
         }
     }
 }
