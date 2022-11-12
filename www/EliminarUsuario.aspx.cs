@@ -70,6 +70,7 @@ namespace www
                     }
                     ddlUsuarios.DataSource = listadoNuevo;
                     ddlUsuarios.DataBind();
+                    lblHelp.Text = "Has seleccionado el usuario " + ddlUsuarios.SelectedItem.Text;
                 }
                 else
                 {
