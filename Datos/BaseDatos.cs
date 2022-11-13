@@ -52,6 +52,18 @@ namespace Datos
             Usuario usuario = new Usuario("usuariocaducado@gmail.com", "admin", "admin", "Admin1234", false);
             usuario.CaducidadPassword = DateTime.Today.AddDays(-31);
             InsertarUsuario(usuario);
+
+            Usuario usuarioDos = new Usuario("usuariocaducado1@gmail.com", "admin", "admin", "Admin1234", false);
+            usuarioDos.CaducidadPassword = DateTime.Today.AddDays(-31);
+            InsertarUsuario(usuarioDos);
+
+            Usuario usuarioTres = new Usuario("usuariocaducado2@gmail.com", "admin", "admin", "Admin1234", false);
+            usuarioTres.CaducidadPassword = DateTime.Today.AddDays(-31);
+            InsertarUsuario(usuarioTres);
+
+            Usuario usuarioCuatro = new Usuario("usuariocaducado3@gmail.com", "admin", "admin", "Admin1234", false);
+            usuarioCuatro.CaducidadPassword = DateTime.Today.AddDays(-31);
+            InsertarUsuario(usuarioCuatro);
         }
 
 		public bool InsertarUsuario(Usuario usuario)

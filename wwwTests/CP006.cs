@@ -30,9 +30,9 @@ namespace SeleniumTests
             driver.Navigate().GoToUrl("https://localhost:44382/InicioSesion.aspx");
             driver.FindElement(By.Id("txtNombreUs")).Click();
             driver.FindElement(By.Id("txtNombreUs")).Clear();
-            driver.FindElement(By.Id("txtNombreUs")).SendKeys("usuariocaducado@gmail.com");
+            driver.FindElement(By.Id("txtNombreUs")).SendKeys("usuariocaducado1@gmail.com");
             driver.FindElement(By.Id("txtPass")).Clear();
-            driver.FindElement(By.Id("txtPass")).SendKeys("Abcd1234");
+            driver.FindElement(By.Id("txtPass")).SendKeys("Admin1234");
             driver.FindElement(By.Id("btnEntrar")).Click();
             driver.Navigate().GoToUrl("https://localhost:44382/Pass.aspx");
             driver.FindElement(By.Id("txtPass")).Click();
@@ -94,9 +94,9 @@ namespace SeleniumTests
             driver.Navigate().GoToUrl("https://localhost:44382/InicioSesion.aspx");
             driver.FindElement(By.Id("txtNombreUs")).Click();
             driver.FindElement(By.Id("txtNombreUs")).Clear();
-            driver.FindElement(By.Id("txtNombreUs")).SendKeys("usuariocaducado@gmail.com");
+            driver.FindElement(By.Id("txtNombreUs")).SendKeys("usuariocaducado1@gmail.com");
             driver.FindElement(By.Id("txtPass")).Clear();
-            driver.FindElement(By.Id("txtPass")).SendKeys("Abcd1234");
+            driver.FindElement(By.Id("txtPass")).SendKeys("Admin234");
             driver.FindElement(By.Id("btnEntrar")).Click();
             driver.Navigate().GoToUrl("https://localhost:44382/Pass.aspx");
             driver.FindElement(By.Id("txtPass")).Click();

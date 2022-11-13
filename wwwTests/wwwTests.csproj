@@ -62,6 +62,8 @@
     <Compile Include="CP004.cs" />
     <Compile Include="CP005.cs" />
     <Compile Include="CP006.cs" />
+    <Compile Include="CP007.cs" />
+    <Compile Include="CP008.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
