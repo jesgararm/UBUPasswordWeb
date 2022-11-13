@@ -42,8 +42,9 @@ namespace SeleniumTests
             
             
             Assert.AreEqual("Usuario incorrecto", driver.FindElement(By.Id("lblErrorInicioSesion")).Text);
-            
-         
+
+            driver.Close();
+
         }
 
         [TestMethod]
@@ -68,6 +69,7 @@ namespace SeleniumTests
 
             Assert.AreEqual("Usuario incorrecto", driver.FindElement(By.Id("lblErrorInicioSesion")).Text);
 
+            driverDos.Close();
 
         }
     }

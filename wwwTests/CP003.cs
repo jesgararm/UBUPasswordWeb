@@ -42,8 +42,8 @@ namespace SeleniumTests
             
             
             Assert.AreEqual("Contraseña incorrecta", driver.FindElement(By.Id("lblErrorInicioSesion")).Text);
-            
 
+            driver.Close();
         }
 
         [TestMethod]
@@ -67,7 +67,7 @@ namespace SeleniumTests
 
             Assert.AreEqual("Contraseña incorrecta", driver.FindElement(By.Id("lblErrorInicioSesion")).Text);
 
-
+            driverDos.Close();
         }
     }
 }

@@ -15,7 +15,6 @@ namespace SeleniumTests
     {
         private static IWebDriver driver;
         private static IWebDriver driverDos;
-
         [ClassInitialize]
         public static void InitializeClass(TestContext testContext)
         {
@@ -23,6 +22,7 @@ namespace SeleniumTests
             driverDos = new EdgeDriver();
         }
         
+
         [TestMethod]
         public void TheCP004TestChrome()
         {
@@ -32,13 +32,14 @@ namespace SeleniumTests
             driver.FindElement(By.Id("txtNombreUs")).Clear();
             driver.FindElement(By.Id("txtNombreUs")).SendKeys("usuariocaducado@gmail.com");
             driver.FindElement(By.Id("txtPass")).Clear();
-            driver.FindElement(By.Id("txtPass")).SendKeys("admin");
-            driver.FindElement(By.Id("form1")).Submit();
+            driver.FindElement(By.Id("txtPass")).SendKeys("Admin1234");
+            driver.FindElement(By.Id("btnEntrar")).Click();
             driver.Navigate().GoToUrl("https://localhost:44382/Pass.aspx");
             
             
             Assert.AreEqual("CONTRASEÑA CADUCADA", driver.FindElement(By.XPath("//form[@id='form1']/div[3]/table/tbody/tr/td[2]/strong/span")).Text);
-            
+
+            driver.Close();
 
         }
 
@@ -53,13 +54,14 @@ namespace SeleniumTests
             driver.FindElement(By.Id("txtNombreUs")).Clear();
             driver.FindElement(By.Id("txtNombreUs")).SendKeys("usuariocaducado@gmail.com");
             driver.FindElement(By.Id("txtPass")).Clear();
-            driver.FindElement(By.Id("txtPass")).SendKeys("admin");
-            driver.FindElement(By.Id("form1")).Submit();
+            driver.FindElement(By.Id("txtPass")).SendKeys("Admin1234");
+            driver.FindElement(By.Id("btnEntrar")).Click();
             driver.Navigate().GoToUrl("https://localhost:44382/Pass.aspx");
 
 
             Assert.AreEqual("CONTRASEÑA CADUCADA", driver.FindElement(By.XPath("//form[@id='form1']/div[3]/table/tbody/tr/td[2]/strong/span")).Text);
 
+            driverDos.Close();
 
         }
     }
