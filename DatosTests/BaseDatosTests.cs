@@ -19,7 +19,7 @@ namespace Datos.Tests
             // Probamos que el constructor funciona
             Assert.IsNotNull(db);
             // Probamos el número de usuarios inicializados en la BBDD
-            Assert.AreEqual(51, db.NumeroUsuarios());
+            Assert.AreEqual(55, db.NumeroUsuarios());
         }
 
         [TestMethod()]
@@ -51,7 +51,7 @@ namespace Datos.Tests
             Usuario usuario = null;
             Assert.IsFalse(db.EliminaUsuario(usuario));
             // Probamos el número de usuarios inicializados en la BBDD no ha cambiado
-            Assert.AreEqual(51, db.NumeroUsuarios());
+            Assert.AreEqual(55, db.NumeroUsuarios());
             #endregion
 
             #region Caso 2
@@ -60,7 +60,7 @@ namespace Datos.Tests
             // Probamos que no elimina nada si no existe
             Assert.IsFalse(db.EliminaUsuario(usuario2));
             // Probamos el número de usuarios inicializados en la BBDD no ha cambiado
-            Assert.AreEqual(51, db.NumeroUsuarios());
+            Assert.AreEqual(55, db.NumeroUsuarios());
             #endregion
 
             #region Caso 3
@@ -69,7 +69,7 @@ namespace Datos.Tests
             Usuario usuario3 = db.ObtenerUsuario("agu_gra@gmail.com");
             Assert.IsTrue(db.EliminaUsuario(usuario3));
             // Probamos el número de usuarios inicializados en la BBDD si ha cambiado
-            Assert.AreEqual(50, db.NumeroUsuarios());
+            Assert.AreEqual(54, db.NumeroUsuarios());
             #endregion
 
             #region Caso 4
@@ -90,7 +90,7 @@ namespace Datos.Tests
 
             Assert.IsTrue(db.EliminaUsuario(usuario4));
             // Probamos el número de usuarios inicializados en la BBDD si ha cambiado
-            Assert.AreEqual(49, db.NumeroUsuarios());
+            Assert.AreEqual(53, db.NumeroUsuarios());
             // comprobamos que se elimina la entrada perteneciante al usuario4
             Assert.AreEqual(db.ObtenerIdEntradasPropiedadUsuario(usuario4).Count,0);
 
@@ -353,7 +353,7 @@ namespace Datos.Tests
         {
             BaseDatos db = new BaseDatos();
 
-            Assert.AreEqual(51, db.NumeroUsuarios());
+            Assert.AreEqual(55, db.NumeroUsuarios());
         }
 
         [TestMethod()]
