@@ -180,12 +180,79 @@ namespace Datos.Tests
         [TestMethod()]
         public void ObtenerIdEntradasPropiedadUsuario()
         {
-            Assert.Fail();
+            BaseDatos db = new BaseDatos();
+
+            #region Caso 1
+            // el usuario tiene entradas y se recuperan correctamente los ids
+            Usuario usuario = db.ObtenerUsuario("agu_gra@gmail.com");
+            // Creamos una entrada con este usuario
+            Entrada entrada = new Entrada(usuario, "123456", "test", new List<int>()); // tendra id 1
+            Entrada entrada1 = new Entrada(usuario, "123456", "test", new List<int>()); // tendra id 2
+            Entrada entrada2 = new Entrada(usuario, "123456", "test", new List<int>()); // tendra id 3
+            //insertamos la entradas
+            db.InsertaEntrada(entrada);
+            db.InsertaEntrada(entrada1);
+            db.InsertaEntrada(entrada2);
+
+            var lista = db.ObtenerIdEntradasPropiedadUsuario(usuario);
+            //comprobamos que contiene los ids y la cantidad de elementos es la correcta
+            Assert.IsTrue(lista.Contains(1));
+            Assert.IsTrue(lista.Contains(2));
+            Assert.IsTrue(lista.Contains(3));
+            int num = lista.Count;
+            Assert.AreEqual(num,3);
+            #endregion
+
+            #region Caso 2
+            // el usuario no tiene entradas
+            Usuario usuario1 = db.ObtenerUsuario("glo_san@gmail.com");
+
+            var lista1 = db.ObtenerIdEntradasPropiedadUsuario(usuario1);
+            //comprobamos que contiene los ids y la cantidad de elementos es la correcta
+            int num1 = lista1.Count;
+            Assert.AreEqual(num1, 0);
+            #endregion
         }
         [TestMethod()]
         public void ObtenerIdEntradasAccesoUsuario()
         {
-            Assert.Fail();
+            BaseDatos db = new BaseDatos();
+
+            #region Caso 1
+            // el usuario tiene acceso a varias entradas que no le pertenecen
+            Usuario usuario = db.ObtenerUsuario("agu_gra@gmail.com");
+            // Creamos una entrada con este usuario
+            Entrada entrada = new Entrada(usuario, "123456", "test", new List<int>());
+            Entrada entrada1 = new Entrada(usuario, "123456", "test", new List<int>());
+            Entrada entrada2 = new Entrada(usuario, "123456", "test", new List<int>());
+            //insertamos la entradas
+            db.InsertaEntrada(entrada);
+            db.InsertaEntrada(entrada1);
+            db.InsertaEntrada(entrada2);
+            //cogemos otro usuario y le damos acceso a la entrada
+            Usuario usuario1 = db.ObtenerUsuario("cay_arr@gmail.com");
+            entrada.AgregarUsuario(usuario1);
+            entrada1.AgregarUsuario(usuario1);
+            entrada2.AgregarUsuario(usuario1);
+            //buscamos la entradas a las que tiene acceso el nuevo usuario
+            var lista = db.ObtenerIdEntradasAccesoUsuario(usuario1);
+            //comprobamos que contiene los ids y la cantidad de elementos es la correcta
+            Assert.IsTrue(lista.Contains(1));
+            Assert.IsTrue(lista.Contains(2));
+            Assert.IsTrue(lista.Contains(3));
+            int num = lista.Count;
+            Assert.AreEqual(num, 3);
+            #endregion
+
+            #region Caso 2
+            // el usuario no tiene accesoa a entradas que no le pertenecen
+            Usuario usuario2 = db.ObtenerUsuario("glo_san@gmail.com");
+
+            var lista1 = db.ObtenerIdEntradasPropiedadUsuario(usuario2);
+            //comprobamos que contiene los ids y la cantidad de elementos es la correcta
+            int num1 = lista1.Count;
+            Assert.AreEqual(num1, 0);
+            #endregion
         }
 
         [TestMethod()]
