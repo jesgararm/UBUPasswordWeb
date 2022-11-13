@@ -48,7 +48,7 @@ namespace Datos
                 InsertarUsuario(u);
             }
             
-			// Se inserta usuario caducado para pruebas de validación.
+			// Se insertan usuarios caducados para pruebas de validación.
             Usuario usuario = new Usuario("usuariocaducado@gmail.com", "admin", "admin", "Admin1234", false);
             usuario.CaducidadPassword = DateTime.Today.AddDays(-31);
             InsertarUsuario(usuario);

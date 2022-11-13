@@ -27,23 +27,31 @@ namespace www
 
         protected void btnOK_Click(object sender, EventArgs e)
         {
-            if (!ValidarPassword(txtPass.Text)) {
+            if (!ValidarPassword(txtPass.Text))
+            {
                 lblError.Text = "La contraseña no cumple los requisitos";
-                lblError.Visible = true;
                 txtPass.Text = "";
-                Response.Redirect("Pass.aspx");
+
             }
 
-            if (user.ExistePasswordAlmacen(txtPass.Text))
+            else 
             {
-                lblError.Text = "La contraseña ya ha sido utilizada";
-                lblError.Visible = true;
-                txtPass.Text = "";
-                Response.Redirect("Pass.aspx");
+                if (user.ExistePasswordAlmacen(txtPass.Text))
+                {
+                    lblError.Text = "La contraseña ya ha sido utilizada";
+                    txtPass.Text = "";
+
+                }
+
+                else 
+                {
+                    user.CambiarPassword(txtPass.Text);
+                    db.CambiarPasswordUsuario(user);
+                    Response.Redirect("Inicio.aspx");
+                }
+
             }
-            user.CambiarPassword(txtPass.Text);
-            db.CambiarPasswordUsuario(user);
-            Response.Redirect("Inicio.aspx");
+            
             }
         }
     }
