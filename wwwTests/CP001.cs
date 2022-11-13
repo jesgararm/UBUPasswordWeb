@@ -6,6 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
+using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 
 namespace SeleniumTests
@@ -25,7 +26,7 @@ namespace SeleniumTests
         [TestMethod]
         public void TheCP001TestChrome()
         {
-            driver.Navigate().GoToUrl("http://localhost:50650/InicioSesion.aspx");
+            driver.Navigate().GoToUrl("https://localhost:44382/InicioSesion.aspx");
             driver.FindElement(By.Id("txtNombreUs")).Click();
             driver.FindElement(By.Id("txtNombreUs")).Clear();
             driver.FindElement(By.Id("txtNombreUs")).SendKeys("agu_gra@gmail.com");
@@ -49,7 +50,7 @@ namespace SeleniumTests
         [TestMethod]
         public void TheCP001TestEdge()
         {
-            driverDos.Navigate().GoToUrl("http://localhost:50650/InicioSesion.aspx");
+            driverDos.Navigate().GoToUrl("https://localhost:44382/InicioSesion.aspx");
             driverDos.FindElement(By.Id("txtNombreUs")).Click();
             driverDos.FindElement(By.Id("txtNombreUs")).Clear();
             driverDos.FindElement(By.Id("txtNombreUs")).SendKeys("agu_gra@gmail.com");
